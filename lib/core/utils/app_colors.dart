@@ -18,7 +18,8 @@ abstract class AppColors {
   static Color primaryColorLight = const Color.fromARGB(255, 255, 255, 255);
   static Color secondaryColorLight = const Color.fromARGB(255, 106, 99, 168);
   static Color darkColorLight = const Color.fromARGB(255, 169, 169, 201);
-  static Color scaffoldColorLight = const Color(0xff1A1A29);
+  static Color scaffoldColorLight = const Color(0xffF5F5F5);
   static Color appBarColorLight = const Color.fromARGB(255, 205, 205, 216);
   static Color primaryLightLight = const Color.fromARGB(255, 255, 255, 255);
+  static Color black = const Color(0xff000000);
 }

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/utils/app_colors.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vivek_portfolio/core/utils/theme_cubit.dart';
 import '../../../../core/utils/app_enums.dart';
 import '../../../../core/utils/app_extensions.dart';
 import '../../../../core/utils/app_strings.dart';
-import '../../../../core/utils/app_styles.dart';
 import 'intro_actions.dart';
 
 class IntroText extends StatelessWidget {
@@ -12,6 +11,7 @@ class IntroText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var textTheme = context.watch<ThemeCubit>().state.themeData.textTheme;
     return Column(
       crossAxisAlignment: context.width < DeviceType.mobile.getMaxWidth()
           ? CrossAxisAlignment.center
@@ -20,8 +20,12 @@ class IntroText extends StatelessWidget {
         Text(
           AppStrings.helloIM,
           style: context.width < DeviceType.ipad.getMaxWidth()
-              ? AppStyles.s16
-              : AppStyles.s32.copyWith(color: AppColors.white),
+              ? textTheme.headlineMedium?.copyWith(
+                  color: textTheme.displayLarge?.color,
+                )
+              : textTheme.displayMedium?.copyWith(
+                  color: textTheme.displayLarge?.color,
+                ),
           textAlign: _getTextAlign(context.width),
           softWrap: true,
         ),
@@ -29,8 +33,8 @@ class IntroText extends StatelessWidget {
         Text(
           AppStrings.developerName,
           style: context.width < DeviceType.ipad.getMaxWidth()
-              ? AppStyles.s24
-              : AppStyles.s52,
+              ? textTheme.headlineLarge
+              : textTheme.displayLarge,
           textAlign: _getTextAlign(context.width),
           softWrap: true,
         ),
@@ -42,8 +46,8 @@ class IntroText extends StatelessWidget {
           child: Text(
             AppStrings.introMsg,
             style: context.width < DeviceType.ipad.getMaxWidth()
-                ? AppStyles.s14
-                : AppStyles.s18,
+                ? textTheme.titleSmall
+                : textTheme.titleLarge,
             textAlign: _getTextAlign(context.width),
             softWrap: true,
           ),

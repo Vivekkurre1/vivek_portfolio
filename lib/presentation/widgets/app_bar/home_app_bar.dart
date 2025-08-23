@@ -34,17 +34,27 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const DeveloperNameBtn(),
+          if (context.width < DeviceType.ipad.getMaxWidth())
+            IconButton(
+              onPressed: () {
+                context.read<ThemeCubit>().toggleTheme();
+              },
+              tooltip: 'Change Theme',
+              color: AppColors.primaryColor,
+              icon: Icon(context.watch<ThemeCubit>().state.icon),
+            ),
           context.width > DeviceType.ipad.getMaxWidth()
               ? const HorizontalHeaders()
               : const CustomMenuBtn(),
-          IconButton(
-            onPressed: () {
-              context.read<ThemeCubit>().toggleTheme();
-            },
-            tooltip: 'Change Theme',
-            color: AppColors.primaryColor,
-            icon: Icon(context.watch<ThemeCubit>().state.icon),
-          ),
+          if (context.width > DeviceType.ipad.getMaxWidth())
+            IconButton(
+              onPressed: () {
+                context.read<ThemeCubit>().toggleTheme();
+              },
+              tooltip: 'Change Theme',
+              color: AppColors.primaryColor,
+              icon: Icon(context.watch<ThemeCubit>().state.icon),
+            ),
         ],
       ),
     );

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vivek_portfolio/core/utils/theme_cubit.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_enums.dart';
 import '../../../../core/utils/app_extensions.dart';
-import '../../../../core/utils/app_styles.dart';
 import '../../../../core/widgets/custom_button.dart';
 
 class ContactForm extends StatefulWidget {
@@ -41,6 +42,7 @@ class _ContactFormState extends State<ContactForm> {
 
   @override
   Widget build(BuildContext context) {
+    var themeData = context.watch<ThemeCubit>().state.themeData;
     return SizedBox(
       width: _getFormWidth(context.width),
       child: Form(
@@ -50,26 +52,26 @@ class _ContactFormState extends State<ContactForm> {
           children: [
             TextFormField(
               controller: _nameController,
-              style: AppStyles.s14,
-              decoration: const InputDecoration(labelText: 'Name'),
+              style: themeData.textTheme.labelLarge,
+              decoration: InputDecoration(labelText: 'Name'),
             ),
             const SizedBox(height: 12),
             TextFormField(
               controller: _emailController,
-              style: AppStyles.s14,
+              style: themeData.textTheme.labelLarge,
               decoration: const InputDecoration(labelText: 'E-mail'),
             ),
             const SizedBox(height: 12),
             TextFormField(
               controller: _subjectController,
-              style: AppStyles.s14,
+              style: themeData.textTheme.labelLarge,
               decoration: const InputDecoration(labelText: 'Subject'),
             ),
             const SizedBox(height: 12),
             TextField(
               controller: _messageController,
               maxLines: 5,
-              style: AppStyles.s14,
+              style: themeData.textTheme.bodyLarge,
               decoration: const InputDecoration(
                 labelText: 'Type a message here...',
               ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vivek_portfolio/core/utils/theme_cubit.dart';
 
 import '../../../../core/utils/app_enums.dart';
 import '../../../../core/utils/app_extensions.dart';
@@ -10,6 +12,7 @@ class ExperienceInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var textTheme = context.watch<ThemeCubit>().state.themeData.textTheme;
     return Row(
       children: [
         Text(
@@ -22,7 +25,7 @@ class ExperienceInfo extends StatelessWidget {
         Flexible(
           child: Text(
             AppStrings.experienceMsg,
-            style: _getExpMsgStyle(context.width),
+            style: _getExpMsgStyle(context.width, textTheme),
             softWrap: true,
           ),
         ),
@@ -30,13 +33,16 @@ class ExperienceInfo extends StatelessWidget {
     );
   }
 
-  _getExpMsgStyle(double deviceWidth) {
+  TextStyle? _getExpMsgStyle(double deviceWidth, TextTheme textTheme) {
     if (deviceWidth < DeviceType.mobile.getMaxWidth()) {
-      return AppStyles.s16.copyWith(fontWeight: FontWeight.w500);
+      // return AppStyles.s16.copyWith(fontWeight: FontWeight.w500);
+      return textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w500);
     } else if (deviceWidth < DeviceType.ipad.getMaxWidth()) {
-      return AppStyles.s18;
+      // return AppStyles.s18;
+      return textTheme.headlineMedium;
     } else {
-      return AppStyles.s24.copyWith(fontWeight: FontWeight.w500);
+      // return AppStyles.s24.copyWith(fontWeight: FontWeight.w500);
+      return textTheme.headlineLarge?.copyWith(fontWeight: FontWeight.w500);
     }
   }
 }

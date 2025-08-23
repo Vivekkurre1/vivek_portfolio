@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vivek_portfolio/core/utils/theme_cubit.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_enums.dart';
@@ -13,7 +14,8 @@ class IntoActions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> actions = [
-      CustomButton(
+      CustomButton2(
+        Colors.white,
         label: AppBarHeaders.aboutMe.getString(),
         icon: Icons.person,
         backgroundColor: AppColors.primaryColor,
@@ -25,7 +27,8 @@ class IntoActions extends StatelessWidget {
       context.width < DeviceType.ipad.getMaxWidth()
           ? const SizedBox(height: 6)
           : const SizedBox(width: 32),
-      CustomButton(
+      CustomButton2(
+        context.watch<ThemeCubit>().state.themeData.iconTheme.color,
         label: AppBarHeaders.projects.getString(),
         icon: Icons.remove_red_eye,
         borderColor: AppColors.primaryColor,
@@ -40,9 +43,6 @@ class IntoActions extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: actions,
           )
-        : Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: actions,
-          );
+        : Row(mainAxisAlignment: MainAxisAlignment.start, children: actions);
   }
 }

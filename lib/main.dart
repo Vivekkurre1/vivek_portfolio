@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: BlocProvider<ThemeCubit>(
           create: (context) => ThemeCubit(),
-          child: const HomeView(),
+          child: HomeView(),
         ),
         // home: HomeView(),
       ),

@@ -1,4 +1,4 @@
-const _basePath = 'assets/images';
+// const _basePath = 'assets/images';
 
 abstract class AppAssets {
   static const devImg = 'assets/images/dev_img.png';
