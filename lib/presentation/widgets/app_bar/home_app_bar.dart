@@ -19,9 +19,16 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Theme.of(context).brightness == Brightness.dark
-          ? AppColors.appBarColor
-          : AppColors.appBarColorLight,
+      // color: Theme.of(context).brightness == Brightness.dark
+      //     ? AppColors.appBarColor
+      //     : AppColors.appBarColorLight,
+      // color: Theme.of(context).appBarTheme.backgroundColor,
+      color: context
+          .watch<ThemeCubit>()
+          .state
+          .themeData
+          .appBarTheme
+          .backgroundColor,
       padding: EdgeInsets.symmetric(horizontal: _getHorizontalPadding(context)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -32,17 +39,11 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               : const CustomMenuBtn(),
           IconButton(
             onPressed: () {
-              // button can change the theme of app
-              // Theme.of(context).brightness == Brightness.dark
-              //     ? context.read<ThemeCubit>().setLightTheme()
-              //     : context.read<ThemeCubit>().setDarkTheme();
-              //and rebuild the app
               context.read<ThemeCubit>().toggleTheme();
             },
             tooltip: 'Change Theme',
-            //change according to the context
             color: AppColors.primaryColor,
-            icon: Icon(Icons.color_lens_outlined),
+            icon: Icon(context.watch<ThemeCubit>().state.icon),
           ),
         ],
       ),
