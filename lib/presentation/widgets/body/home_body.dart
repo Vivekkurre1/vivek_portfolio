@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vivek_portfolio/presentation/widgets/body/education/education_section.dart';
 
 import '../../../core/utils/app_extensions.dart';
 import '../../blocs/home_bloc/home_bloc.dart';
@@ -20,6 +21,7 @@ class _HomeBodyState extends State<HomeBody> {
   final ScrollController _controller = ScrollController();
   final introKey = GlobalKey();
   final aboutKey = GlobalKey();
+  final educationKey = GlobalKey();
   final projectKey = GlobalKey();
   final contactKey = GlobalKey();
 
@@ -35,6 +37,7 @@ class _HomeBodyState extends State<HomeBody> {
   void _initListenerForInteractWithHeaderIndex() {
     double introHeight = introKey.currentContext!.size!.height;
     double aboutHeight = aboutKey.currentContext!.size!.height;
+    double educationHeight = educationKey.currentContext!.size!.height;
     double projectHeight = projectKey.currentContext!.size!.height;
     // double contactHeight = contactKey.currentContext!.size!.height;
     _controller.addListener(() {
@@ -46,8 +49,11 @@ class _HomeBodyState extends State<HomeBody> {
       } else if (controllerHeight < (introHeight + aboutHeight)) {
         context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(1));
       } else if (controllerHeight <
-          (introHeight + aboutHeight + projectHeight)) {
+          (introHeight + aboutHeight + educationHeight)) {
         context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(2));
+      } else if (controllerHeight <
+          (introHeight + aboutHeight + educationHeight + projectHeight)) {
+        context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(3));
       } else {
         context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(3));
       }
@@ -81,11 +87,17 @@ class _HomeBodyState extends State<HomeBody> {
           }
           if (state.index == 2) {
             Scrollable.ensureVisible(
-              projectKey.currentContext!,
+              educationKey.currentContext!,
               duration: duration,
             );
           }
           if (state.index == 3) {
+            Scrollable.ensureVisible(
+              projectKey.currentContext!,
+              duration: duration,
+            );
+          }
+          if (state.index == 4) {
             Scrollable.ensureVisible(
               contactKey.currentContext!,
               duration: duration,
@@ -103,6 +115,7 @@ class _HomeBodyState extends State<HomeBody> {
                 children: [
                   IntroSection(key: introKey),
                   AboutMeSection(key: aboutKey),
+                  EducationSection(key: educationKey),
                   ProjectsSection(key: projectKey),
                   ContactSection(key: contactKey),
                 ],

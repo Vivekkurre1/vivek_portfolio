@@ -16,4 +16,8 @@ abstract class NetworkAssets {
       "https://res.cloudinary.com/dnjeaojih/image/upload/v1755915475/slider_kpfz6h.svg";
   static const String uiDesignLogo =
       "https://res.cloudinary.com/dnjeaojih/image/upload/v1755913566/ruler_uk8kjt.svg";
+  static const String csvtuLogo =
+      "https://res.cloudinary.com/dnjeaojih/image/upload/v1756726302/csvtu_gcaj1q.png";
+  static const String highAndHighSecondaryLogo =
+      "https://res.cloudinary.com/dnjeaojih/image/upload/v1756726195/download_lgixaw.png";
 }
