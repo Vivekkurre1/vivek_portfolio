@@ -38,7 +38,7 @@ class _HomeBodyState extends State<HomeBody> {
     double introHeight = introKey.currentContext!.size!.height;
     double aboutHeight = aboutKey.currentContext!.size!.height;
     double educationHeight = educationKey.currentContext!.size!.height;
-    double projectHeight = projectKey.currentContext!.size!.height;
+    // double projectHeight = projectKey.currentContext!.size!.height;
     // double contactHeight = contactKey.currentContext!.size!.height;
     _controller.addListener(() {
       double controllerHeight = _controller.offset;
@@ -51,9 +51,9 @@ class _HomeBodyState extends State<HomeBody> {
       } else if (controllerHeight <
           (introHeight + aboutHeight + educationHeight)) {
         context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(2));
-      } else if (controllerHeight <
-          (introHeight + aboutHeight + educationHeight + projectHeight)) {
-        context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(3));
+        // } else if (controllerHeight <
+        //     (introHeight + aboutHeight + educationHeight + projectHeight)) {
+        //   context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(3));
       } else {
         context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(3));
       }
@@ -97,12 +97,12 @@ class _HomeBodyState extends State<HomeBody> {
               duration: duration,
             );
           }
-          if (state.index == 4) {
-            Scrollable.ensureVisible(
-              contactKey.currentContext!,
-              duration: duration,
-            );
-          }
+          // if (state.index == 4) {
+          //   Scrollable.ensureVisible(
+          //     contactKey.currentContext!,
+          //     duration: duration,
+          //   );
+          // }
         }
       },
       child: Stack(
@@ -116,7 +116,7 @@ class _HomeBodyState extends State<HomeBody> {
                   IntroSection(key: introKey),
                   AboutMeSection(key: aboutKey),
                   EducationSection(key: educationKey),
-                  ProjectsSection(key: projectKey),
+                  // ProjectsSection(key: projectKey),
                   ContactSection(key: contactKey),
                 ],
               ),

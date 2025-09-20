@@ -25,7 +25,7 @@ class ThemeCubit extends Cubit<ThemeState> {
     secondaryHeaderColor: AppColors.primaryColor,
     highlightColor: AppColors.secondaryColorLight,
     scaffoldBackgroundColor: AppColors.scaffoldColorLight,
-
+    hintColor: Colors.black87,
     textTheme: TextTheme(
       displayLarge: TextStyle(
         fontSize: 52,
@@ -71,7 +71,7 @@ class ThemeCubit extends Cubit<ThemeState> {
       ),
       titleSmall: TextStyle(
         fontSize: 14,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w600,
         color: AppColors.black,
       ),
 
@@ -146,6 +146,7 @@ class ThemeCubit extends Cubit<ThemeState> {
     ),
     primaryColor: AppColors.primaryColor,
     secondaryHeaderColor: AppColors.white,
+    hintColor: Colors.white70,
     textTheme: TextTheme(
       displayLarge: TextStyle(
         fontSize: 52,
@@ -191,7 +192,7 @@ class ThemeCubit extends Cubit<ThemeState> {
       ),
       titleSmall: TextStyle(
         fontSize: 14,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w600,
         color: AppColors.white,
       ),
 
