@@ -41,12 +41,12 @@ class _HomeBodyState extends State<HomeBody> {
     double aboutHeight = aboutKey.currentContext!.size!.height;
     double educationHeight = educationKey.currentContext!.size!.height;
     double achievementHeight = achievementKey.currentContext!.size!.height;
-    // double projectHeight = projectKey.currentContext!.size!.height;
+    double projectHeight = projectKey.currentContext!.size!.height;
     // double contactHeight = contactKey.currentContext!.size!.height;
     _controller.addListener(() {
       double controllerHeight = _controller.offset;
       if (_controller.position.extentAfter == 0.0) {
-        context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(3));
+        context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(5));
       } else if (controllerHeight < introHeight) {
         context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(0));
       } else if (controllerHeight < (introHeight + aboutHeight)) {
@@ -57,11 +57,15 @@ class _HomeBodyState extends State<HomeBody> {
       } else if (controllerHeight <
           (introHeight + aboutHeight + educationHeight + achievementHeight)) {
         context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(3));
-        // } else if (controllerHeight <
-        //     (introHeight + aboutHeight + educationHeight + projectHeight)) {
-        //   context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(3));
-      } else {
+      } else if (controllerHeight <
+          (introHeight +
+              aboutHeight +
+              educationHeight +
+              achievementHeight +
+              projectHeight)) {
         context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(4));
+      } else {
+        context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(5));
       }
     });
   }
@@ -99,11 +103,17 @@ class _HomeBodyState extends State<HomeBody> {
           }
           if (state.index == 3) {
             Scrollable.ensureVisible(
-              projectKey.currentContext!,
+              achievementKey.currentContext!,
               duration: duration,
             );
           }
           if (state.index == 4) {
+            Scrollable.ensureVisible(
+              projectKey.currentContext!,
+              duration: duration,
+            );
+          }
+          if (state.index == 5) {
             Scrollable.ensureVisible(
               contactKey.currentContext!,
               duration: duration,
@@ -123,7 +133,7 @@ class _HomeBodyState extends State<HomeBody> {
                   AboutMeSection(key: aboutKey),
                   EducationSection(key: educationKey),
                   AchievementSection(key: achievementKey),
-                  // ProjectsSection(key: projectKey),
+                  ProjectsSection(key: projectKey),
                   ContactSection(key: contactKey),
                 ],
               ),

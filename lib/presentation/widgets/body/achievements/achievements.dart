@@ -4,6 +4,8 @@ import 'dart:js' as js;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AchieveDesk extends StatelessWidget {
+  const AchieveDesk({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -51,7 +53,7 @@ class AchieveDesk extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Image.network(
-                          'https://lh3.googleusercontent.com/rSQpAc0Z3nv8cIEub9qYcAbKUvUTelb3HdPhGaToFW6Mqwgap9oqHdXdMaWwYLx44A=s180-rw',
+                          'https://res.cloudinary.com/dnjeaojih/image/upload/v1756726302/csvtu_gcaj1q.png',
                           width: 250,
                           height: 175,
                         ),
