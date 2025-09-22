@@ -9,16 +9,21 @@ class AchievementHead extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var textTheme = context.watch<ThemeCubit>().state.themeData.textTheme;
+    var theme = context.watch<ThemeCubit>().state.themeData;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         FittedBox(
           child: Text(
-            AppBarHeaders.education.getString(),
-            style: textTheme.displayMedium,
+            "${AppBarHeaders.achievements.getString()} 🏆",
+            style: theme.textTheme.displayMedium,
           ),
+        ),
+        SizedBox(height: 10),
+        Text(
+          'ACHIEVEMENTS, CERTIFICATIONS AND SOME COOL STUFF THAT I HAVE DONE !',
+          style: theme.textTheme.bodyLarge?.copyWith(color: theme.hintColor),
         ),
       ],
     );

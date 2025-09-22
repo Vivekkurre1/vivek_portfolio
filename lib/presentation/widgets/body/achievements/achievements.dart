@@ -1,145 +1,110 @@
 import 'package:flutter/material.dart';
+import 'package:vivek_portfolio/core/utils/app_constants.dart';
+import 'package:vivek_portfolio/core/utils/app_enums.dart';
 import 'dart:js' as js;
 
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:vivek_portfolio/core/utils/app_extensions.dart';
+import 'package:vivek_portfolio/data/models/achivement.dart';
 
 class AchieveDesk extends StatelessWidget {
   const AchieveDesk({super.key});
 
+  int _getCrossAxisCount(double deviceWidth) {
+    int numOfServices = AppConstants.achievements.length;
+    if (deviceWidth < DeviceType.mobile.getMaxWidth()) {
+      return 1;
+    } else if (deviceWidth < DeviceType.ipad.getMaxWidth()) {
+      return 1;
+    } else if (deviceWidth < DeviceType.smallScreenLaptop.getMaxWidth()) {
+      return 3;
+    } else {
+      return numOfServices > 3 ? 3 : numOfServices;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: _getCrossAxisCount(context.width),
+        crossAxisSpacing: 16,
+        mainAxisSpacing: 16,
+      ),
+
+      itemBuilder: (context, index) {
+        return AchievementCard(achievement: AppConstants.achievements[index]);
+      },
+      itemCount: AppConstants.achievements.length,
+    );
+    //   return SizedBox(
+    //     width: context.width,
+    //     child: SingleChildScrollView(
+    //       scrollDirection: Axis.horizontal,
+    //       child: SizedBox(
+    //         height: 350,
+    //         width: 1000,
+    //         child: Row(),
+    //       ),
+    //     ),
+    //   );
+  }
+}
+
+class AchievementCard extends StatelessWidget {
+  const AchievementCard({super.key, required this.achievement});
+
+  final Achievement achievement;
+
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 450,
+      height: 300,
+      // width: context.width * 0.3,
+      // height: context.height * 0.3,
+      padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        color: Colors.white.withOpacity(0.5),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 10.0,
+            spreadRadius: 5,
+            offset: Offset(
+              5.0, // Move to right 10  horizontally
+              5.0, // Move to bottom 10 Vertically
+            ),
+          ),
+        ],
+      ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            'Achievements 🏆',
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 50),
+          Image.network(
+            achievement.imageUrl,
+            width: context.width * 0.3,
+            height: context.height * 0.15,
+            // width: 150,
+            // height: 150,
           ),
-          SizedBox(height: 10),
-          Text(
-            'ACHIEVEMENTS, CERTIFICATIONS AND SOME COOL STUFF THAT I HAVE DONE !',
-            style: TextStyle(color: Colors.grey, fontSize: 22),
+          FittedBox(
+            child: Text(
+              achievement.name,
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
+              textAlign: TextAlign.center,
+            ),
           ),
-          SizedBox(height: 25),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Container(
-              height: 350,
-              width: 1000,
-              child: Row(
-                children: [
-                  SizedBox(width: 25),
-                  Container(
-                    width: 450,
-                    height: 300,
-                    padding: new EdgeInsets.fromLTRB(20, 20, 20, 20),
-                    decoration: new BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Colors.white.withOpacity(0.5),
-                      boxShadow: [
-                        new BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
-                          blurRadius: 10.0,
-                          spreadRadius: 5,
-                          offset: Offset(
-                            5.0, // Move to right 10  horizontally
-                            5.0, // Move to bottom 10 Vertically
-                          ),
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Image.network(
-                          'https://res.cloudinary.com/dnjeaojih/image/upload/v1756726302/csvtu_gcaj1q.png',
-                          width: 250,
-                          height: 175,
-                        ),
-                        Text(
-                          'Walls',
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.w700,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            js.context.callMethod("open", [
-                              "https://play.google.com/store/apps/details?id=com.naveenjujaray.walls",
-                            ]);
-                          },
-                          child: Text(
-                            'Available on Playstore',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.green[900],
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(width: 25),
-                  Container(
-                    width: 450,
-                    height: 300,
-                    padding: new EdgeInsets.fromLTRB(20, 20, 20, 20),
-                    decoration: new BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Colors.white.withOpacity(0.5),
-                      boxShadow: [
-                        new BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
-                          blurRadius: 10.0,
-                          spreadRadius: 5,
-                          offset: Offset(
-                            5.0, // Move to right 10  horizontally
-                            5.0, // Move to bottom 10 Vertically
-                          ),
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Icon(
-                          FontAwesomeIcons.bloggerB,
-                          size: 170,
-                          color: Colors.redAccent,
-                        ),
-                        SizedBox(height: 5),
-                        Text(
-                          'Blog',
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.w700,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            js.context.callMethod("open", [
-                              "https://naveenjujaray.js.org",
-                            ]);
-                          },
-                          child: Text(
-                            'Check it out !',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.green[900],
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+          InkWell(
+            onTap: () {
+              js.context.callMethod("open", [achievement.certificationUrl]);
+            },
+            child: Text(
+              'View Certificate',
+              style: TextStyle(fontSize: 18, color: Colors.green[900]),
+              textAlign: TextAlign.center,
             ),
           ),
         ],
@@ -148,296 +113,111 @@ class AchieveDesk extends StatelessWidget {
   }
 }
 
-class AchieveTab extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        width: 600,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Achievements 🏆',
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 50),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'ACHIEVEMENTS, CERTIFICATIONS AND SOME COOL STUFF THAT I HAVE DONE !',
-              style: TextStyle(color: Colors.grey, fontSize: 22),
-            ),
-            SizedBox(height: 25),
-            SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Container(
-                child: Center(
-                  child: Column(
-                    children: [
-                      SizedBox(height: 25),
-                      Container(
-                        width: 450,
-                        height: 300,
-                        padding: new EdgeInsets.fromLTRB(20, 20, 20, 20),
-                        decoration: new BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: Colors.white.withOpacity(0.5),
-                          boxShadow: [
-                            new BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              blurRadius: 10.0,
-                              spreadRadius: 5,
-                              offset: Offset(
-                                5.0, // Move to right 10  horizontally
-                                5.0, // Move to bottom 10 Vertically
-                              ),
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image.network(
-                              'https://lh3.googleusercontent.com/rSQpAc0Z3nv8cIEub9qYcAbKUvUTelb3HdPhGaToFW6Mqwgap9oqHdXdMaWwYLx44A=s180-rw',
-                              width: 250,
-                              height: 175,
-                            ),
-                            Text(
-                              'Walls',
-                              style: TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.w700,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            InkWell(
-                              onTap: () {
-                                js.context.callMethod("open", [
-                                  "https://play.google.com/store/apps/details?id=com.naveenjujaray.walls",
-                                ]);
-                              },
-                              child: Text(
-                                'Available on Playstore',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.green[900],
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 25),
-                      Container(
-                        width: 450,
-                        height: 300,
-                        padding: new EdgeInsets.fromLTRB(20, 20, 20, 20),
-                        decoration: new BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: Colors.white.withOpacity(0.5),
-                          boxShadow: [
-                            new BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              blurRadius: 10.0,
-                              spreadRadius: 5,
-                              offset: Offset(
-                                5.0, // Move to right 10  horizontally
-                                5.0, // Move to bottom 10 Vertically
-                              ),
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Icon(
-                              FontAwesomeIcons.bloggerB,
-                              size: 170,
-                              color: Colors.redAccent,
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              'Blog',
-                              style: TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.w700,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            InkWell(
-                              onTap: () {
-                                js.context.callMethod("open", [
-                                  "https://naveenjujaray.js.org",
-                                ]);
-                              },
-                              child: Text(
-                                'Check it out !',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.green[900],
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 25),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+// class AchievementCard extends StatelessWidget {
+//   const AchievementCard({super.key});
 
-class AchieveMob extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        width: 600,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Achievements 🏆',
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 32),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'ACHIEVEMENTS, CERTIFICATIONS AND SOME COOL STUFF THAT I HAVE DONE !',
-              style: TextStyle(color: Colors.grey, fontSize: 18),
-            ),
-            SizedBox(height: 25),
-            SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Container(
-                child: Center(
-                  child: Column(
-                    children: [
-                      SizedBox(height: 25),
-                      Container(
-                        width: 400,
-                        height: 250,
-                        padding: new EdgeInsets.fromLTRB(20, 20, 20, 20),
-                        decoration: new BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: Colors.white.withOpacity(0.5),
-                          boxShadow: [
-                            new BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              blurRadius: 10.0,
-                              spreadRadius: 5,
-                              offset: Offset(
-                                5.0, // Move to right 10  horizontally
-                                5.0, // Move to bottom 10 Vertically
-                              ),
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image.network(
-                              'https://lh3.googleusercontent.com/rSQpAc0Z3nv8cIEub9qYcAbKUvUTelb3HdPhGaToFW6Mqwgap9oqHdXdMaWwYLx44A=s180-rw',
-                              width: 200,
-                              height: 125,
-                            ),
-                            Text(
-                              'Walls',
-                              style: TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.w700,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            InkWell(
-                              onTap: () {
-                                js.context.callMethod("open", [
-                                  "https://play.google.com/store/apps/details?id=com.naveenjujaray.walls",
-                                ]);
-                              },
-                              child: Text(
-                                'Available on Playstore',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.green[900],
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 25),
-                      Container(
-                        width: 400,
-                        height: 250,
-                        padding: new EdgeInsets.fromLTRB(20, 20, 20, 20),
-                        decoration: new BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: Colors.white.withOpacity(0.5),
-                          boxShadow: [
-                            new BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              blurRadius: 10.0,
-                              spreadRadius: 5,
-                              offset: Offset(
-                                5.0, // Move to right 10  horizontally
-                                5.0, // Move to bottom 10 Vertically
-                              ),
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Icon(
-                              FontAwesomeIcons.bloggerB,
-                              size: 120,
-                              color: Colors.redAccent,
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              'Blog',
-                              style: TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.w700,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            InkWell(
-                              onTap: () {
-                                js.context.callMethod("open", [
-                                  "https://naveenjujaray.js.org",
-                                ]);
-                              },
-                              child: Text(
-                                'Check it out !',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.green[900],
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 25),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       children: [
+//         SizedBox(width: 25),
+//         Container(
+//           width: 450,
+//           height: 300,
+//           padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+//           decoration: BoxDecoration(
+//             borderRadius: BorderRadius.circular(5),
+//             color: Colors.white.withOpacity(0.5),
+//             boxShadow: [
+//               BoxShadow(
+//                 color: Colors.black.withOpacity(0.1),
+//                 blurRadius: 10.0,
+//                 spreadRadius: 5,
+//                 offset: Offset(
+//                   5.0, // Move to right 10  horizontally
+//                   5.0, // Move to bottom 10 Vertically
+//                 ),
+//               ),
+//             ],
+//           ),
+//           child: Column(
+//             crossAxisAlignment: CrossAxisAlignment.center,
+//             children: [
+//               Image.network(
+//                 'https://res.cloudinary.com/dnjeaojih/image/upload/v1758519289/udemy-wordmark-seeklogo_qte3kg.png',
+//                 width: 250,
+//                 height: 175,
+//               ),
+//               Text(
+//                 'Master Flutter and Firebase',
+//                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
+//                 textAlign: TextAlign.center,
+//               ),
+//               InkWell(
+//                 onTap: () {
+//                   js.context.callMethod("open", [
+//                     "https://www.udemy.com/certificate/UC-a3a43b16-baf7-4816-8302-0440d4616042/",
+//                   ]);
+//                 },
+//                 child: Text(
+//                   'View Certificate',
+//                   style: TextStyle(fontSize: 18, color: Colors.green[900]),
+//                   textAlign: TextAlign.center,
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//         SizedBox(width: 25),
+//         Container(
+//           width: 450,
+//           height: 300,
+//           padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+//           decoration: BoxDecoration(
+//             borderRadius: BorderRadius.circular(5),
+//             color: Colors.white.withOpacity(0.5),
+//             boxShadow: [
+//               BoxShadow(
+//                 color: Colors.black.withOpacity(0.1),
+//                 blurRadius: 10.0,
+//                 spreadRadius: 5,
+//                 offset: Offset(
+//                   5.0, // Move to right 10  horizontally
+//                   5.0, // Move to bottom 10 Vertically
+//                 ),
+//               ),
+//             ],
+//           ),
+//           child: Column(
+//             crossAxisAlignment: CrossAxisAlignment.center,
+//             children: [
+//               Image.network(
+//                 'https://res.cloudinary.com/dnjeaojih/image/upload/v1758521916/jspiders_logo_b5dvba.png',
+//                 width: 250,
+//                 height: 175,
+//               ),
+//               SizedBox(height: 5),
+//               Text(
+//                 'Java Full Stack',
+//                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
+//                 textAlign: TextAlign.center,
+//               ),
+//               InkWell(
+//                 onTap: () {
+//                   js.context.callMethod("open", [
+//                     "https://drive.google.com/file/d/1KpauM1CHXCzzbTofxaCr4E30lmpTuIm7/view?usp=sharing",
+//                   ]);
+//                 },
+//                 child: Text(
+//                   'View Certificate',
+//                   style: TextStyle(fontSize: 18, color: Colors.green[900]),
+//                   textAlign: TextAlign.center,
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }

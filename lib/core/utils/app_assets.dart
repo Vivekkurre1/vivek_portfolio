@@ -20,4 +20,14 @@ abstract class NetworkAssets {
       "https://res.cloudinary.com/dnjeaojih/image/upload/v1756726302/csvtu_gcaj1q.png";
   static const String highAndHighSecondaryLogo =
       "https://res.cloudinary.com/dnjeaojih/image/upload/v1756726195/download_lgixaw.png";
+
+  // Achivements and providers
+  static const String udemyLogo =
+      "https://res.cloudinary.com/dnjeaojih/image/upload/v1758519289/udemy-wordmark-seeklogo_qte3kg.png";
+  static const String jspidersLogo =
+      "https://res.cloudinary.com/dnjeaojih/image/upload/v1758521916/jspiders_logo_b5dvba.png";
+  static const String udemyCertificateUrl =
+      "https://www.udemy.com/certificate/UC-a3a43b16-baf7-4816-8302-0440d4616042/";
+  static const String jspidersCertificateUrl =
+      "https://drive.google.com/file/d/1KpauM1CHXCzzbTofxaCr4E30lmpTuIm7/view?usp=sharing";
 }

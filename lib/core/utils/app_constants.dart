@@ -1,3 +1,5 @@
+import 'package:vivek_portfolio/data/models/achivement.dart';
+
 import '../../data/models/custom_service.dart';
 import '../../data/models/project.dart';
 import 'app_assets.dart';
@@ -22,6 +24,21 @@ abstract class AppConstants {
       logo: NetworkAssets.scrappingLogo,
       description:
           'I can collect content and data from the internet then manipulate and analyze as needed.',
+    ),
+  ];
+
+  static const List<Achievement> achievements = [
+    Achievement(
+      name: "Master Flutter and Firebase",
+      certificationUrl: NetworkAssets.udemyCertificateUrl,
+      imageUrl: NetworkAssets.udemyLogo,
+      issuedBy: "Udemy",
+    ),
+    Achievement(
+      name: "Java Full Stack",
+      imageUrl: NetworkAssets.jspidersLogo,
+      certificationUrl: NetworkAssets.jspidersCertificateUrl,
+      issuedBy: "Jspiders",
     ),
   ];
   static const List<Project> projects = [
