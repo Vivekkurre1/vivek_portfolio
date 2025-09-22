@@ -28,6 +28,10 @@ class SocialMediaIcons extends StatelessWidget {
           icon: FontAwesomeIcons.twitter,
           link: SocialLinks.twitter,
         ),
+        SocialMediaIconBtn(
+          icon: FontAwesomeIcons.github,
+          link: SocialLinks.github,
+        ),
       ],
     );
   }
@@ -48,11 +52,7 @@ class SocialMediaIconBtn extends StatelessWidget {
       onPressed: () {
         html.window.open(link!, '_blank');
       },
-      child: Icon(
-        icon,
-        color: AppColors.primaryColor,
-        size: 32,
-      ),
+      child: Icon(icon, color: AppColors.primaryColor, size: 32),
     );
   }
 }

@@ -4,4 +4,5 @@ abstract class SocialLinks {
   static const String instagram = "https://www.instagram.com/vkmoves";
   static const String linkedin =
       "https://www.linkedin.com/in/vivek-kurre-a10b37230/";
+  static const String github = "https://github.com/Vivekkurre1";
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vivek_portfolio/presentation/widgets/body/achievements/achievement_section.dart';
 import 'package:vivek_portfolio/presentation/widgets/body/education/education_section.dart';
 
 import '../../../core/utils/app_extensions.dart';
@@ -24,6 +25,7 @@ class _HomeBodyState extends State<HomeBody> {
   final educationKey = GlobalKey();
   final projectKey = GlobalKey();
   final contactKey = GlobalKey();
+  final achievementKey = GlobalKey();
 
   @override
   void initState() {
@@ -38,6 +40,7 @@ class _HomeBodyState extends State<HomeBody> {
     double introHeight = introKey.currentContext!.size!.height;
     double aboutHeight = aboutKey.currentContext!.size!.height;
     double educationHeight = educationKey.currentContext!.size!.height;
+    double achievementHeight = achievementKey.currentContext!.size!.height;
     // double projectHeight = projectKey.currentContext!.size!.height;
     // double contactHeight = contactKey.currentContext!.size!.height;
     _controller.addListener(() {
@@ -51,11 +54,14 @@ class _HomeBodyState extends State<HomeBody> {
       } else if (controllerHeight <
           (introHeight + aboutHeight + educationHeight)) {
         context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(2));
+      } else if (controllerHeight <
+          (introHeight + aboutHeight + educationHeight + achievementHeight)) {
+        context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(3));
         // } else if (controllerHeight <
         //     (introHeight + aboutHeight + educationHeight + projectHeight)) {
         //   context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(3));
       } else {
-        context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(3));
+        context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(4));
       }
     });
   }
@@ -97,12 +103,12 @@ class _HomeBodyState extends State<HomeBody> {
               duration: duration,
             );
           }
-          // if (state.index == 4) {
-          //   Scrollable.ensureVisible(
-          //     contactKey.currentContext!,
-          //     duration: duration,
-          //   );
-          // }
+          if (state.index == 4) {
+            Scrollable.ensureVisible(
+              contactKey.currentContext!,
+              duration: duration,
+            );
+          }
         }
       },
       child: Stack(
@@ -116,6 +122,7 @@ class _HomeBodyState extends State<HomeBody> {
                   IntroSection(key: introKey),
                   AboutMeSection(key: aboutKey),
                   EducationSection(key: educationKey),
+                  AchievementSection(key: achievementKey),
                   // ProjectsSection(key: projectKey),
                   ContactSection(key: contactKey),
                 ],
