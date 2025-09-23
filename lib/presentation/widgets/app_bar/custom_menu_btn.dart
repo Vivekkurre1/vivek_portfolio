@@ -12,16 +12,16 @@ class CustomMenuBtn extends StatelessWidget {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
         return SizedBox(
-          width: 40,
+          width: 48,
           child: AnimatedCrossFade(
             crossFadeState: _getCrossFadeState(context),
             firstChild: TextButton(
               onPressed: () => _menuBtnClicked(context),
-              child: const Icon(Icons.menu),
+              child: const Icon(size: 42, Icons.menu),
             ),
             secondChild: TextButton(
               onPressed: () => _closeBtnClicked(context),
-              child: const Icon(Icons.close),
+              child: const Icon(size: 42, Icons.close),
             ),
             duration: const Duration(milliseconds: 200),
           ),
@@ -32,14 +32,14 @@ class CustomMenuBtn extends StatelessWidget {
 
   _menuBtnClicked(BuildContext context) {
     context.read<HomeBloc>().add(
-          ChangeAppBarHeadersAxis(AppBarHeadersAxis.vertical),
-        );
+      ChangeAppBarHeadersAxis(AppBarHeadersAxis.vertical),
+    );
   }
 
   _closeBtnClicked(BuildContext context) {
     context.read<HomeBloc>().add(
-          ChangeAppBarHeadersAxis(AppBarHeadersAxis.horizontal),
-        );
+      ChangeAppBarHeadersAxis(AppBarHeadersAxis.horizontal),
+    );
   }
 
   CrossFadeState _getCrossFadeState(BuildContext context) {

@@ -26,13 +26,8 @@ class CustomHeaderBtn extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 18,
-          vertical: 26,
-        ),
-        child: Text(
-          AppBarHeaders.values[headerIndex].getString(),
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 20),
+        child: Text(AppBarHeaders.values[headerIndex].getString()),
       ),
     );
   }

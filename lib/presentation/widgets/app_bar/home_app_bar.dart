@@ -32,29 +32,38 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       padding: EdgeInsets.symmetric(horizontal: _getHorizontalPadding(context)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const DeveloperNameBtn(),
-          if (context.width < DeviceType.ipad.getMaxWidth())
-            IconButton(
-              onPressed: () {
-                context.read<ThemeCubit>().toggleTheme();
-              },
-              tooltip: 'Change Theme',
-              color: AppColors.primaryColor,
-              icon: Icon(context.watch<ThemeCubit>().state.icon),
-            ),
-          context.width > DeviceType.ipad.getMaxWidth()
-              ? const HorizontalHeaders()
-              : const CustomMenuBtn(),
-          if (context.width > DeviceType.ipad.getMaxWidth())
-            IconButton(
-              onPressed: () {
-                context.read<ThemeCubit>().toggleTheme();
-              },
-              tooltip: 'Change Theme',
-              color: AppColors.primaryColor,
-              icon: Icon(context.watch<ThemeCubit>().state.icon),
-            ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: const DeveloperNameBtn(),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              if (context.width < DeviceType.ipad.getMaxWidth())
+                IconButton(
+                  onPressed: () {
+                    context.read<ThemeCubit>().toggleTheme();
+                  },
+                  tooltip: 'Change Theme',
+                  color: AppColors.primaryColor,
+                  icon: Icon(context.watch<ThemeCubit>().state.icon),
+                ),
+              context.width > DeviceType.ipad.getMaxWidth()
+                  ? const HorizontalHeaders()
+                  : const CustomMenuBtn(),
+              if (context.width > DeviceType.ipad.getMaxWidth())
+                IconButton(
+                  onPressed: () {
+                    context.read<ThemeCubit>().toggleTheme();
+                  },
+                  tooltip: 'Change Theme',
+                  color: AppColors.primaryColor,
+                  icon: Icon(context.watch<ThemeCubit>().state.icon),
+                ),
+            ],
+          ),
         ],
       ),
     );
@@ -64,7 +73,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
     if (context.width < DeviceType.ipad.getMaxWidth()) {
       return context.width * .03;
     } else {
-      return context.width * .08;
+      return context.width * .03;
     }
   }
 }

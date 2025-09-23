@@ -23,10 +23,7 @@ class DeveloperNameBtn extends StatelessWidget {
               : context.width * .2,
           child: FittedBox(
             alignment: Alignment.topLeft,
-            child: Text(
-              AppStrings.developerName,
-              style: AppStyles.s28,
-            ),
+            child: Text(AppStrings.developerName, style: AppStyles.s28),
           ),
         ),
       ),

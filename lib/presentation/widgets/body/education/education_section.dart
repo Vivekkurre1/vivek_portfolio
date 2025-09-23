@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:vivek_portfolio/core/utils/app_enums.dart';
-import 'package:vivek_portfolio/core/utils/app_extensions.dart';
 import 'package:vivek_portfolio/presentation/widgets/body/education/edu.dart';
 import 'package:vivek_portfolio/presentation/widgets/body/education/education_head.dart';
 
