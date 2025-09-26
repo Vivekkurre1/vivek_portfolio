@@ -1,17 +1,41 @@
+// class Project {
+//   final String name;
+//   final String imageUrl;
+//   final String description;
+//   final String? githubRepoLink;
+//   final String? previewLink;
+//   final String? googlePlay;
+
+//   const Project({
+//     required this.name,
+//     required this.imageUrl,
+//     required this.description,
+//     this.githubRepoLink,
+//     this.previewLink,
+//     this.googlePlay,
+//   });
+// }
+
 class Project {
   final String name;
-  final String imageUrl;
+  final String logoUrl;
   final String description;
-  final String? githubRepoLink;
-  final String? previewLink;
-  final String? googlePlay;
+  final List<String> features;
+  final List<String> technologies;
+  final Map<String, String> libraries; // key: lib name, value: URL
+  final List<String> screenshots;
+  final String? liveDemoUrl;
+  final String githubUrl;
 
-  const Project({
+  Project({
     required this.name,
-    required this.imageUrl,
+    required this.logoUrl,
     required this.description,
-    this.githubRepoLink,
-    this.previewLink,
-    this.googlePlay,
+    required this.features,
+    required this.technologies,
+    required this.libraries,
+    required this.screenshots,
+    this.liveDemoUrl,
+    required this.githubUrl,
   });
 }

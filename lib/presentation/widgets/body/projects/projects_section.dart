@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'projects_grid.dart';
+import 'package:vivek_portfolio/presentation/widgets/body/projects/project_ui.dart';
 import 'projects_intro.dart';
 
 class ProjectsSection extends StatelessWidget {
@@ -15,7 +14,8 @@ class ProjectsSection extends StatelessWidget {
         children: [
           ProjectsIntro(),
           SizedBox(height: 52),
-          ProjectsGrid(),
+          // ProjectsGrid(),
+          ResponsiveProjects(),
         ],
       ),
     );
