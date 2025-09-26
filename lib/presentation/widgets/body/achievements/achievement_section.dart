@@ -11,6 +11,9 @@ class AchievementSection extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 80),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.max,
+
         children: [AchievementHead(), SizedBox(height: 20), AchieveDesk()],
       ),
     );

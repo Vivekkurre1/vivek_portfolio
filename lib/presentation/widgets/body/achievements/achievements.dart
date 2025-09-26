@@ -1,54 +1,33 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vivek_portfolio/core/utils/app_constants.dart';
 import 'package:vivek_portfolio/core/utils/app_enums.dart';
 import 'dart:js' as js;
 
 import 'package:vivek_portfolio/core/utils/app_extensions.dart';
+import 'package:vivek_portfolio/core/utils/theme_cubit.dart';
 import 'package:vivek_portfolio/data/models/achivement.dart';
 
 class AchieveDesk extends StatelessWidget {
   const AchieveDesk({super.key});
 
-  int _getCrossAxisCount(double deviceWidth) {
-    int numOfServices = AppConstants.achievements.length;
-    if (deviceWidth < DeviceType.mobile.getMaxWidth()) {
-      return 1;
-    } else if (deviceWidth < DeviceType.ipad.getMaxWidth()) {
-      return 1;
-    } else if (deviceWidth < DeviceType.smallScreenLaptop.getMaxWidth()) {
-      return 3;
-    } else {
-      return numOfServices > 3 ? 3 : numOfServices;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: _getCrossAxisCount(context.width),
-        crossAxisSpacing: 16,
-        mainAxisSpacing: 16,
+    return SizedBox(
+      width: context.width,
+      child: Wrap(
+        runAlignment: WrapAlignment.center,
+        alignment: WrapAlignment.center,
+        spacing: 24,
+        runSpacing: 24,
+        children: [
+          for (var item in AppConstants.achievements)
+            AchievementCard(achievement: item),
+        ],
       ),
-
-      itemBuilder: (context, index) {
-        return AchievementCard(achievement: AppConstants.achievements[index]);
-      },
-      itemCount: AppConstants.achievements.length,
     );
-    //   return SizedBox(
-    //     width: context.width,
-    //     child: SingleChildScrollView(
-    //       scrollDirection: Axis.horizontal,
-    //       child: SizedBox(
-    //         height: 350,
-    //         width: 1000,
-    //         child: Row(),
-    //       ),
-    //     ),
-    //   );
   }
 }
 
@@ -59,18 +38,78 @@ class AchievementCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeCubit>().state.themeData;
+    var deviceWidth = context.width;
+    var deviceHeight = context.height;
+    double getHight() {
+      if (deviceWidth < DeviceType.mobile.getMaxWidth()) {
+        return deviceHeight / 4;
+      } else if (deviceWidth < DeviceType.ipad.getMaxWidth()) {
+        return deviceHeight / 4;
+      } else {
+        return deviceHeight / 2.4;
+      }
+    }
+
+    double getWidth() {
+      if (deviceWidth < DeviceType.mobile.getMaxWidth()) {
+        return deviceWidth / 1.25;
+      } else if (deviceWidth < DeviceType.ipad.getMaxWidth()) {
+        return deviceWidth / 2;
+      } else {
+        return deviceWidth / 2.5;
+      }
+    }
+
+    TextStyle? getTitleStyle() {
+      if (deviceWidth < DeviceType.mobile.getMaxWidth()) {
+        return theme.textTheme.headlineSmall?.copyWith(
+          fontWeight: FontWeight.w700,
+        );
+      } else if (deviceWidth < DeviceType.ipad.getMaxWidth()) {
+        return theme.textTheme.headlineMedium?.copyWith(
+          fontWeight: FontWeight.w700,
+        );
+      } else {
+        return theme.textTheme.headlineLarge?.copyWith(
+          fontWeight: FontWeight.w700,
+        );
+      }
+    }
+
+    TextStyle? getButtonStyle() {
+      if (deviceWidth < DeviceType.mobile.getMaxWidth()) {
+        return theme.textTheme.titleSmall?.copyWith(
+          fontWeight: FontWeight.w500,
+          color: Colors.green[900],
+          decoration: TextDecoration.underline,
+        );
+      } else if (deviceWidth < DeviceType.ipad.getMaxWidth()) {
+        return theme.textTheme.titleMedium?.copyWith(
+          fontWeight: FontWeight.w500,
+          color: Colors.green[900],
+          decoration: TextDecoration.underline,
+        );
+      } else {
+        return theme.textTheme.titleLarge?.copyWith(
+          fontWeight: FontWeight.w500,
+          color: Colors.green[900],
+          decoration: TextDecoration.underline,
+        );
+      }
+    }
+
     return Container(
-      width: 450,
-      height: 300,
-      // width: context.width * 0.3,
-      // height: context.height * 0.3,
-      padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+      width: getWidth(),
+      height: getHight(),
+      padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
         color: Colors.white.withOpacity(0.5),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            // color: Colors.black.withOpacity(0.1),
+            color: theme.hintColor.withOpacity(0.1),
             blurRadius: 10.0,
             spreadRadius: 5,
             offset: Offset(
@@ -82,20 +121,22 @@ class AchievementCard extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.network(
-            achievement.imageUrl,
-            width: context.width * 0.3,
-            height: context.height * 0.15,
-            // width: 150,
-            // height: 150,
-          ),
-          FittedBox(
-            child: Text(
-              achievement.name,
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
-              textAlign: TextAlign.center,
+          Container(
+            padding: const EdgeInsets.all(12.0),
+            constraints: BoxConstraints(
+              maxWidth: 300,
+              maxHeight: 200,
+              minHeight: 100,
+              minWidth: 200,
             ),
+            child: Image.network(achievement.imageUrl, fit: BoxFit.contain),
+          ),
+          Text(
+            achievement.name,
+            style: getTitleStyle(),
+            textAlign: TextAlign.center,
           ),
           InkWell(
             onTap: () {
@@ -103,7 +144,7 @@ class AchievementCard extends StatelessWidget {
             },
             child: Text(
               'View Certificate',
-              style: TextStyle(fontSize: 18, color: Colors.green[900]),
+              style: getButtonStyle(),
               textAlign: TextAlign.center,
             ),
           ),
@@ -112,112 +153,3 @@ class AchievementCard extends StatelessWidget {
     );
   }
 }
-
-// class AchievementCard extends StatelessWidget {
-//   const AchievementCard({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Row(
-//       children: [
-//         SizedBox(width: 25),
-//         Container(
-//           width: 450,
-//           height: 300,
-//           padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-//           decoration: BoxDecoration(
-//             borderRadius: BorderRadius.circular(5),
-//             color: Colors.white.withOpacity(0.5),
-//             boxShadow: [
-//               BoxShadow(
-//                 color: Colors.black.withOpacity(0.1),
-//                 blurRadius: 10.0,
-//                 spreadRadius: 5,
-//                 offset: Offset(
-//                   5.0, // Move to right 10  horizontally
-//                   5.0, // Move to bottom 10 Vertically
-//                 ),
-//               ),
-//             ],
-//           ),
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.center,
-//             children: [
-//               Image.network(
-//                 'https://res.cloudinary.com/dnjeaojih/image/upload/v1758519289/udemy-wordmark-seeklogo_qte3kg.png',
-//                 width: 250,
-//                 height: 175,
-//               ),
-//               Text(
-//                 'Master Flutter and Firebase',
-//                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
-//                 textAlign: TextAlign.center,
-//               ),
-//               InkWell(
-//                 onTap: () {
-//                   js.context.callMethod("open", [
-//                     "https://www.udemy.com/certificate/UC-a3a43b16-baf7-4816-8302-0440d4616042/",
-//                   ]);
-//                 },
-//                 child: Text(
-//                   'View Certificate',
-//                   style: TextStyle(fontSize: 18, color: Colors.green[900]),
-//                   textAlign: TextAlign.center,
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//         SizedBox(width: 25),
-//         Container(
-//           width: 450,
-//           height: 300,
-//           padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-//           decoration: BoxDecoration(
-//             borderRadius: BorderRadius.circular(5),
-//             color: Colors.white.withOpacity(0.5),
-//             boxShadow: [
-//               BoxShadow(
-//                 color: Colors.black.withOpacity(0.1),
-//                 blurRadius: 10.0,
-//                 spreadRadius: 5,
-//                 offset: Offset(
-//                   5.0, // Move to right 10  horizontally
-//                   5.0, // Move to bottom 10 Vertically
-//                 ),
-//               ),
-//             ],
-//           ),
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.center,
-//             children: [
-//               Image.network(
-//                 'https://res.cloudinary.com/dnjeaojih/image/upload/v1758521916/jspiders_logo_b5dvba.png',
-//                 width: 250,
-//                 height: 175,
-//               ),
-//               SizedBox(height: 5),
-//               Text(
-//                 'Java Full Stack',
-//                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
-//                 textAlign: TextAlign.center,
-//               ),
-//               InkWell(
-//                 onTap: () {
-//                   js.context.callMethod("open", [
-//                     "https://drive.google.com/file/d/1KpauM1CHXCzzbTofxaCr4E30lmpTuIm7/view?usp=sharing",
-//                   ]);
-//                 },
-//                 child: Text(
-//                   'View Certificate',
-//                   style: TextStyle(fontSize: 18, color: Colors.green[900]),
-//                   textAlign: TextAlign.center,
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }

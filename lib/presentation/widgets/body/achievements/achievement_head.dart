@@ -22,7 +22,7 @@ class AchievementHead extends StatelessWidget {
         ),
         SizedBox(height: 10),
         Text(
-          'ACHIEVEMENTS, CERTIFICATIONS AND SOME COOL STUFF THAT I HAVE DONE !',
+          'ACHIEVEMENTS, CERTIFICATIONS THAT I HAVE DONE !',
           style: theme.textTheme.bodyLarge?.copyWith(color: theme.hintColor),
         ),
       ],
