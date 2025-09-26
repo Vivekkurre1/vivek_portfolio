@@ -65,14 +65,17 @@ class AchievementCard extends StatelessWidget {
       if (deviceWidth < DeviceType.mobile.getMaxWidth()) {
         return theme.textTheme.headlineSmall?.copyWith(
           fontWeight: FontWeight.w700,
+          color: Colors.black,
         );
       } else if (deviceWidth < DeviceType.ipad.getMaxWidth()) {
         return theme.textTheme.headlineMedium?.copyWith(
           fontWeight: FontWeight.w700,
+          color: Colors.black,
         );
       } else {
         return theme.textTheme.headlineLarge?.copyWith(
           fontWeight: FontWeight.w700,
+          color: Colors.black,
         );
       }
     }
@@ -83,18 +86,21 @@ class AchievementCard extends StatelessWidget {
           fontWeight: FontWeight.w500,
           color: Colors.green[900],
           decoration: TextDecoration.underline,
+          decorationColor: Colors.green[900],
         );
       } else if (deviceWidth < DeviceType.ipad.getMaxWidth()) {
         return theme.textTheme.titleMedium?.copyWith(
           fontWeight: FontWeight.w500,
           color: Colors.green[900],
           decoration: TextDecoration.underline,
+          decorationColor: Colors.green[900],
         );
       } else {
         return theme.textTheme.titleLarge?.copyWith(
           fontWeight: FontWeight.w500,
           color: Colors.green[900],
           decoration: TextDecoration.underline,
+          decorationColor: Colors.green[900],
         );
       }
     }
