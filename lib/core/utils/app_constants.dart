@@ -43,20 +43,32 @@ abstract class AppConstants {
   ];
   static List<Project> projects = [
     Project(
-      name: 'Flutter Portfolio',
+      name: 'Chat App',
       logoUrl:
-          'https://img.icons8.com/?size=100&id=7I3BjCqe9rjG&format=png&color=000000',
+          'https://raw.githubusercontent.com/Vivekkurre1/do_chat/refs/heads/main/assets/images/logo.png',
       description:
-          'A beautiful portfolio app showcasing my projects and achievements.',
+          'A real-time chat application built with Flutter and Firebase.',
       features: const [
-        'Responsive UI',
-        'Dark mode support',
-        'Smooth animations',
+        'Responsive UI support for all mobile devices',
+        'Simple and clean UI design',
+        'Send text messages, images, videos and files',
+        'Chat with your friends in real-time',
+        'Chat in groups',
+        'Search users by email',
       ],
-      technologies: const ['Flutter', 'Dart', 'Firebase'],
+      technologies: const ['Flutter', 'Dart', 'Firebase', 'Cloudinary Storage'],
       libraries: const {
+        'provider': 'https://pub.dev/packages/provider',
+        'get_it': 'https://pub.dev/packages/get_it',
+        'http': 'https://pub.dev/packages/http',
+        'timeago': 'https://pub.dev/packages/timeago',
+        'firebase_core': 'https://pub.dev/packages/firebase_core',
+        'firebase_auth': 'https://pub.dev/packages/firebase_auth',
+        'firebase_analytics': 'https://pub.dev/packages/firebase_analytics',
+        'image_picker': 'https://pub.dev/packages/image_picker',
         'url_launcher': 'https://pub.dev/packages/url_launcher',
-        'flutter_bloc': 'https://pub.dev/packages/flutter_bloc',
+        'flutter_keyboard_visibility':
+            'https://pub.dev/packages/flutter_keyboard_visibility',
       },
       screenshots: const [
         "https://raw.githubusercontent.com/Vivekkurre1/meeting_sync/2ff6be88503439225716fba9f1720c1a2e9a628e/screen_images/Screenshot%202025-08-20%20at%201.06.48%E2%80%AFPM.png",
@@ -65,8 +77,8 @@ abstract class AppConstants {
         "https://raw.githubusercontent.com/Vivekkurre1/meeting_sync/2ff6be88503439225716fba9f1720c1a2e9a628e/screen_images/Screenshot%202025-08-20%20at%201.06.48%E2%80%AFPM.png",
         'https://raw.githubusercontent.com/Vivekkurre1/meeting_sync/2ff6be88503439225716fba9f1720c1a2e9a628e/screen_images/Screenshot%202025-08-20%20at%201.05.00%E2%80%AFPM.png',
       ],
-      liveDemoUrl: 'https://yourportfolio.com',
-      githubUrl: 'https://github.com/yourusername/flutter-portfolio',
+      // liveDemoUrl: 'https://yourportfolio.com',
+      githubUrl: 'https://github.com/Vivekkurre1/do_chat',
       isWebProject: false,
     ),
     Project(
@@ -153,90 +165,10 @@ abstract class AppConstants {
       screenshots: [
         "https://res.cloudinary.com/dnjeaojih/image/upload/v1744282840/images/users/profile_o8tAJghauAQdQtCat8buDixYlnw1.jpg",
         "https://res.cloudinary.com/dnjeaojih/image/upload/v1744282840/images/users/profile_o8tAJghauAQdQtCat8buDixYlnw1.jpg",
-        // "https://raw.githubusercontent.com/Vivekkurre1/meeting_sync/2ff6be88503439225716fba9f1720c1a2e9a628e/screen_images/Screenshot%202025-08-20%20at%201.06.48%E2%80%AFPM.png",
-        // 'https://raw.githubusercontent.com/Vivekkurre1/meeting_sync/2ff6be88503439225716fba9f1720c1a2e9a628e/screen_images/Screenshot%202025-08-20%20at%201.05.00%E2%80%AFPM.png',
       ],
       liveDemoUrl: 'https://chatapp.example.com',
       githubUrl: 'https://github.com/yourusername/chat-app',
       isWebProject: true,
     ),
   ];
-
-  // static const List<Project> projects = [
-  //   Project(
-  //     name: 'Live score',
-  //     imageUrl:
-  //         'https://drive.google.com/uc?id=1ITN6reINiIaM-6j3QqxrwtvADZgLNvwB',
-  //     description:
-  //         'A football application to display all related matches and rankings in all international and local tournaments',
-  //     githubRepoLink: 'https://github.com/radyhaggag/live_score',
-  //     previewLink: 'https://youtu.be/HSIosFd6Sys',
-  //   ),
-  //   Project(
-  //     name: 'Instagram clone',
-  //     imageUrl:
-  //         'https://drive.google.com/uc?id=1qNFCNYdUo7o36ythQtjaSrv7L0NV_Vnv',
-  //     description:
-  //         'Social media application for share posts and stories with people, One-to-one chat, Share reels videos',
-  //     githubRepoLink:
-  //         'https://github.com/radyhaggag/Instagram-Clone-With-Clean-Architecture',
-  //     previewLink: 'https://youtu.be/MuuVjqrR49g',
-  //   ),
-  //   Project(
-  //     name: 'TikTok Downloader',
-  //     imageUrl:
-  //         'https://drive.google.com/uc?id=1SypuIPVdokg0O4DYoYdswRowlIJAGgIq',
-  //     description:
-  //         'An application for download videos from tiktok and save it to gallery.',
-  //     githubRepoLink: 'https://github.com/radyhaggag/tiktok_downloader',
-  //     previewLink: 'https://youtu.be/mWeA625pcrI',
-  //   ),
-  //   Project(
-  //     name: 'Bookly',
-  //     imageUrl:
-  //         'https://drive.google.com/uc?id=1yQtoq-wjVejWPXRI7gzGMXPUZrRob8kY',
-  //     description: 'An application to explore books and view their details.',
-  //     githubRepoLink:
-  //         'https://github.com/radyhaggag/bookly_app_with_mvvm_and_bloc',
-  //     previewLink: 'https://youtu.be/3nU_dYjsPsg',
-  //   ),
-  //   Project(
-  //     name: 'Image processing',
-  //     imageUrl:
-  //         'https://drive.google.com/uc?id=1hd7U3HgoDqXEi9eDKYjrY9iqlWa6qt8E',
-  //     description:
-  //         'An Desktop program for process images and apply some filters to them.',
-  //     githubRepoLink:
-  //         'https://github.com/radyhaggag/image_processing_program_with_python_flet',
-  //     previewLink: 'https://youtu.be/s1KFdBKNFig',
-  //   ),
-  //   Project(
-  //     name: 'Salat al janazah',
-  //     imageUrl:
-  //         'https://drive.google.com/uc?id=1UpCGckOS46GdTuHU4wuj7Abo_97gxe_E',
-  //     description:
-  //         'An application for add janazah prayer and view the prayers for nearby people',
-  //     googlePlay:
-  //         'https://play.google.com/store/apps/details?id=com.SJY.salataljanaza',
-  //     previewLink: 'https://youtu.be/wK9Y9BhP190',
-  //   ),
-  //   Project(
-  //     name: 'Ghaslah',
-  //     imageUrl:
-  //         'https://drive.google.com/uc?id=1ed4H2-cH6yk_kVkDdxOLcUkgP1xpuo72',
-  //     description:
-  //         'An application for add wash cars reservation with location in map and the picker will come to wash the cars',
-  //     previewLink: 'https://youtu.be/gkeRSAfCZaI',
-  //   ),
-  //   Project(
-  //     name: 'Zawilan',
-  //     imageUrl:
-  //         'https://drive.google.com/uc?id=1ElTwguynMLqhS295-IE7bTTabsZGZp8s',
-  //     description:
-  //         'Zwailan is an education app based on units and sections system, you start by sign up on app and wait until the teacher accept your join request.',
-  //     previewLink: 'https://youtu.be/g92W-SmfkKc',
-  //     googlePlay:
-  //         'https://play.google.com/store/apps/details?id=com.radyhaggag.zawilan',
-  //   ),
-  // ];
 }
