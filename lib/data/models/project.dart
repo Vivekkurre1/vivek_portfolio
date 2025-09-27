@@ -26,6 +26,7 @@ class Project {
   final List<String> screenshots;
   final String? liveDemoUrl;
   final String githubUrl;
+  final bool isWebProject;
 
   Project({
     required this.name,
@@ -37,5 +38,6 @@ class Project {
     required this.screenshots,
     this.liveDemoUrl,
     required this.githubUrl,
+    required this.isWebProject,
   });
 }

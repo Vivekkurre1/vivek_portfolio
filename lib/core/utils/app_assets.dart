@@ -25,7 +25,7 @@ abstract class NetworkAssets {
   static const String udemyLogo =
       "https://res.cloudinary.com/dnjeaojih/image/upload/v1758519289/udemy-wordmark-seeklogo_qte3kg.png";
   static const String jspidersLogo =
-      "https://res.cloudinary.com/dnjeaojih/image/upload/v1758521916/jspiders_logo_b5dvba.png";
+      "https://res.cloudinary.com/dnjeaojih/image/upload/v1758950794/jspiders_logo_b5dvba.png";
   static const String udemyCertificateUrl =
       "https://www.udemy.com/certificate/UC-a3a43b16-baf7-4816-8302-0440d4616042/";
   static const String jspidersCertificateUrl =

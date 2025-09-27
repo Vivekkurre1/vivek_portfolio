@@ -67,6 +67,7 @@ abstract class AppConstants {
       ],
       liveDemoUrl: 'https://yourportfolio.com',
       githubUrl: 'https://github.com/yourusername/flutter-portfolio',
+      isWebProject: false,
     ),
     Project(
       name: 'Weather App',
@@ -89,6 +90,7 @@ abstract class AppConstants {
       ],
       liveDemoUrl: 'https://weatherapp.example.com',
       githubUrl: 'https://github.com/yourusername/weather-app',
+      isWebProject: false,
     ),
     Project(
       name: 'Todo List',
@@ -112,6 +114,7 @@ abstract class AppConstants {
       ],
       liveDemoUrl: null,
       githubUrl: 'https://github.com/yourusername/todo-list',
+      isWebProject: false,
     ),
     Project(
       name: 'E-Commerce App',
@@ -134,6 +137,7 @@ abstract class AppConstants {
       ],
       liveDemoUrl: 'https://ecommerceapp.com',
       githubUrl: 'https://github.com/yourusername/ecommerce-app',
+      isWebProject: false,
     ),
     Project(
       name: 'Chat Application',
@@ -147,11 +151,14 @@ abstract class AppConstants {
         'firebase_auth': 'https://pub.dev/packages/firebase_auth',
       },
       screenshots: [
-        "https://raw.githubusercontent.com/Vivekkurre1/meeting_sync/2ff6be88503439225716fba9f1720c1a2e9a628e/screen_images/Screenshot%202025-08-20%20at%201.06.48%E2%80%AFPM.png",
-        'https://raw.githubusercontent.com/Vivekkurre1/meeting_sync/2ff6be88503439225716fba9f1720c1a2e9a628e/screen_images/Screenshot%202025-08-20%20at%201.05.00%E2%80%AFPM.png',
+        "https://res.cloudinary.com/dnjeaojih/image/upload/v1744282840/images/users/profile_o8tAJghauAQdQtCat8buDixYlnw1.jpg",
+        "https://res.cloudinary.com/dnjeaojih/image/upload/v1744282840/images/users/profile_o8tAJghauAQdQtCat8buDixYlnw1.jpg",
+        // "https://raw.githubusercontent.com/Vivekkurre1/meeting_sync/2ff6be88503439225716fba9f1720c1a2e9a628e/screen_images/Screenshot%202025-08-20%20at%201.06.48%E2%80%AFPM.png",
+        // 'https://raw.githubusercontent.com/Vivekkurre1/meeting_sync/2ff6be88503439225716fba9f1720c1a2e9a628e/screen_images/Screenshot%202025-08-20%20at%201.05.00%E2%80%AFPM.png',
       ],
       liveDemoUrl: 'https://chatapp.example.com',
       githubUrl: 'https://github.com/yourusername/chat-app',
+      isWebProject: true,
     ),
   ];
 
