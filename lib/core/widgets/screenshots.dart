@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:vivek_portfolio/data/models/project.dart';
 
 class Screenshots extends StatelessWidget {
-  const Screenshots({super.key, required this.project});
+  const Screenshots({
+    super.key,
+    required this.screenshots,
+    required this.isWebProject,
+  });
 
-  final Project project;
+  final List<String> screenshots;
+  final bool isWebProject;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +17,7 @@ class Screenshots extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
 
       child: Row(
-        children: project.screenshots.map((screenshot) {
+        children: screenshots.map((screenshot) {
           return Padding(
             padding: const EdgeInsets.only(right: 12.0),
             child: GestureDetector(
@@ -63,7 +67,7 @@ class Screenshots extends StatelessWidget {
                 child: Image.network(
                   screenshot,
                   height: 260,
-                  width: (project.isWebProject) ? 400 : null,
+                  width: (isWebProject) ? 400 : null,
                   fit: BoxFit.contain,
                 ),
               ),

@@ -15,7 +15,7 @@ class CustomChips extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      spacing: 8,
+      spacing: 6,
       runSpacing: 4,
       children: items.map((item) {
         if (isClickable && links != null && links!.containsKey(item)) {

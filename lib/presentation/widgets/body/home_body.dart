@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vivek_portfolio/presentation/widgets/body/achievements/achievement_section.dart';
 import 'package:vivek_portfolio/presentation/widgets/body/education/education_section.dart';
+import 'package:vivek_portfolio/presentation/widgets/body/experience/experience_section.dart';
 
 import '../../../core/utils/app_extensions.dart';
 import '../../blocs/home_bloc/home_bloc.dart';
@@ -23,6 +24,7 @@ class _HomeBodyState extends State<HomeBody> {
   final introKey = GlobalKey();
   final aboutKey = GlobalKey();
   final educationKey = GlobalKey();
+  final experienceKey = GlobalKey();
   final projectKey = GlobalKey();
   final contactKey = GlobalKey();
   final achievementKey = GlobalKey();
@@ -42,6 +44,7 @@ class _HomeBodyState extends State<HomeBody> {
     double educationHeight = educationKey.currentContext!.size!.height;
     double achievementHeight = achievementKey.currentContext!.size!.height;
     double projectHeight = projectKey.currentContext!.size!.height;
+    double experienceHeight = experienceKey.currentContext!.size!.height;
     // double contactHeight = contactKey.currentContext!.size!.height;
     _controller.addListener(() {
       double controllerHeight = _controller.offset;
@@ -55,17 +58,24 @@ class _HomeBodyState extends State<HomeBody> {
           (introHeight + aboutHeight + educationHeight)) {
         context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(2));
       } else if (controllerHeight <
-          (introHeight + aboutHeight + educationHeight + achievementHeight)) {
+          (introHeight + aboutHeight + educationHeight + experienceHeight)) {
         context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(3));
+      } else if (controllerHeight <
+          (introHeight +
+              aboutHeight +
+              educationHeight +
+              experienceHeight +
+              achievementHeight)) {
+        context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(4));
       } else if (controllerHeight <
           (introHeight +
               aboutHeight +
               educationHeight +
               achievementHeight +
               projectHeight)) {
-        context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(4));
-      } else {
         context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(5));
+      } else {
+        context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(6));
       }
     });
   }
@@ -103,17 +113,23 @@ class _HomeBodyState extends State<HomeBody> {
           }
           if (state.index == 3) {
             Scrollable.ensureVisible(
-              achievementKey.currentContext!,
+              experienceKey.currentContext!,
               duration: duration,
             );
           }
           if (state.index == 4) {
             Scrollable.ensureVisible(
-              projectKey.currentContext!,
+              achievementKey.currentContext!,
               duration: duration,
             );
           }
           if (state.index == 5) {
+            Scrollable.ensureVisible(
+              projectKey.currentContext!,
+              duration: duration,
+            );
+          }
+          if (state.index == 6) {
             Scrollable.ensureVisible(
               contactKey.currentContext!,
               duration: duration,
@@ -132,6 +148,7 @@ class _HomeBodyState extends State<HomeBody> {
                   IntroSection(key: introKey),
                   AboutMeSection(key: aboutKey),
                   EducationSection(key: educationKey),
+                  ExperienceSection(key: experienceKey),
                   AchievementSection(key: achievementKey),
                   ProjectsSection(key: projectKey),
                   ContactSection(key: contactKey),

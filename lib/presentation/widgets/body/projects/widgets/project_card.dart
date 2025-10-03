@@ -3,7 +3,7 @@ import 'package:vivek_portfolio/data/models/project.dart';
 import 'package:vivek_portfolio/presentation/widgets/body/projects/widgets/custom_chips.dart';
 import 'package:vivek_portfolio/presentation/widgets/body/projects/helpers/helper.dart';
 import 'package:vivek_portfolio/presentation/widgets/body/projects/widgets/project_card_head.dart';
-import 'package:vivek_portfolio/presentation/widgets/body/projects/widgets/screenshots.dart';
+import 'package:vivek_portfolio/core/widgets/screenshots.dart';
 
 class ProjectCard extends StatelessWidget {
   final Project project;
@@ -76,7 +76,10 @@ class ProjectCard extends StatelessWidget {
               links: project.libraries,
             ),
             const SizedBox(height: 12),
-            Screenshots(project: project),
+            Screenshots(
+              screenshots: project.screenshots,
+              isWebProject: project.isWebProject,
+            ),
             SizedBox(height: 20),
 
             // Buttons Row

@@ -11,6 +11,8 @@ extension AppBarHeaderExtension on AppBarHeaders {
         return 'About me';
       case AppBarHeaders.education:
         return 'Education';
+      case AppBarHeaders.experience:
+        return 'Experience';
       case AppBarHeaders.achievements:
         return 'Achievements';
       case AppBarHeaders.projects:

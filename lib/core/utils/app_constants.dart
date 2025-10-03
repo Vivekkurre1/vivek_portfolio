@@ -1,4 +1,5 @@
 import 'package:vivek_portfolio/data/models/achivement.dart';
+import 'package:vivek_portfolio/data/models/experience.dart';
 
 import '../../data/models/custom_service.dart';
 import '../../data/models/project.dart';
@@ -157,47 +158,151 @@ abstract class AppConstants {
       githubUrl: 'https://github.com/Vivekkurre1/snake_game',
       isWebProject: false,
     ),
-    Project(
-      name: 'E-Commerce App',
-      logoUrl: 'https://img.icons8.com/ios-filled/50/000000/shopping-cart.png',
-      description:
-          'A complete e-commerce app with product browsing, cart and payment integration.',
-      features: [
-        'Product search',
-        'Shopping cart',
-        'Payment Gateway Integration',
-      ],
-      technologies: ['Flutter', 'Dart', 'Stripe'],
-      libraries: {
-        'flutter_stripe': 'https://pub.dev/packages/flutter_stripe',
-        'cached_network_image': 'https://pub.dev/packages/cached_network_image',
+    // Project(
+    //   name: 'E-Commerce App',
+    //   logoUrl: 'https://img.icons8.com/ios-filled/50/000000/shopping-cart.png',
+    //   description:
+    //       'A complete e-commerce app with product browsing, cart and payment integration.',
+    //   features: [
+    //     'Product search',
+    //     'Shopping cart',
+    //     'Payment Gateway Integration',
+    //   ],
+    //   technologies: ['Flutter', 'Dart', 'Stripe'],
+    //   libraries: {
+    //     'flutter_stripe': 'https://pub.dev/packages/flutter_stripe',
+    //     'cached_network_image': 'https://pub.dev/packages/cached_network_image',
+    //   },
+    //   screenshots: [
+    //     "https://raw.githubusercontent.com/Vivekkurre1/meeting_sync/2ff6be88503439225716fba9f1720c1a2e9a628e/screen_images/Screenshot%202025-08-20%20at%201.06.48%E2%80%AFPM.png",
+    //     'https://raw.githubusercontent.com/Vivekkurre1/meeting_sync/2ff6be88503439225716fba9f1720c1a2e9a628e/screen_images/Screenshot%202025-08-20%20at%201.05.00%E2%80%AFPM.png',
+    //   ],
+    //   liveDemoUrl: 'https://ecommerceapp.com',
+    //   githubUrl: 'https://github.com/yourusername/ecommerce-app',
+    //   isWebProject: false,
+    // ),
+    // Project(
+    //   name: 'Chat Application',
+    //   logoUrl: 'https://img.icons8.com/color/48/000000/chat.png',
+    //   description:
+    //       'Real-time chat app with group chat and media sharing features.',
+    //   features: ['Real-time messaging', 'Group chat', 'Media sharing'],
+    //   technologies: ['Flutter', 'Dart', 'Firebase Firestore'],
+    //   libraries: {
+    //     'cloud_firestore': 'https://pub.dev/packages/cloud_firestore',
+    //     'firebase_auth': 'https://pub.dev/packages/firebase_auth',
+    //   },
+    //   screenshots: [
+    //     "https://res.cloudinary.com/dnjeaojih/image/upload/v1744282840/images/users/profile_o8tAJghauAQdQtCat8buDixYlnw1.jpg",
+    //     "https://res.cloudinary.com/dnjeaojih/image/upload/v1744282840/images/users/profile_o8tAJghauAQdQtCat8buDixYlnw1.jpg",
+    //   ],
+    //   liveDemoUrl: 'https://chatapp.example.com',
+    //   githubUrl: 'https://github.com/yourusername/chat-app',
+    //   isWebProject: true,
+    // ),
+  ];
+  static List<Experience> experiences = [
+    Experience(
+      companyName: 'Quichub Innovation LLP',
+      designation: 'Software Developer',
+      startDate: DateTime(2023, 9),
+      endDate: DateTime(2025, 1),
+      employmentType: EmploymentType.fullTime,
+      companyLogoUrl:
+          "https://res.cloudinary.com/dnjeaojih/image/upload/v1759483802/quichub_c2tcuo.jpg",
+      companyWebsite: "https://quichub.com/",
+      socialLinks: {
+        "LinkedIn": "https://www.linkedin.com/company/quichub-innovations/",
       },
-      screenshots: [
-        "https://raw.githubusercontent.com/Vivekkurre1/meeting_sync/2ff6be88503439225716fba9f1720c1a2e9a628e/screen_images/Screenshot%202025-08-20%20at%201.06.48%E2%80%AFPM.png",
-        'https://raw.githubusercontent.com/Vivekkurre1/meeting_sync/2ff6be88503439225716fba9f1720c1a2e9a628e/screen_images/Screenshot%202025-08-20%20at%201.05.00%E2%80%AFPM.png',
+      techStack: [
+        "Flutter",
+        "Dart",
+        "gRPC",
+        "GraphQL",
+        "MongoDB",
+        "Golang",
+        "PostgreSQL",
+        "React Js",
+        "Git",
+        "GitHub",
+        "Azure DevOps",
       ],
-      liveDemoUrl: 'https://ecommerceapp.com',
-      githubUrl: 'https://github.com/yourusername/ecommerce-app',
-      isWebProject: false,
+      projects: [
+        ProjectExperience(
+          name: "QuicShop SELLER ",
+          appOrWebLink:
+              "https://play.google.com/store/apps/details?id=com.quichub.seller&pcampaignid=web_share",
+          screenshots: [
+            "https://raw.githubusercontent.com/Vivekkurre1/do_chat/refs/heads/main/screenshots/Screenshot%202025-10-01%20at%2012.04.40%E2%80%AFPM.png",
+            "https://raw.githubusercontent.com/Vivekkurre1/do_chat/refs/heads/main/screenshots/Screenshot%202025-10-01%20at%2012.01.19%E2%80%AFPM.png",
+          ],
+          summary:
+              "Built a scalable chat application for cross-platform (Android, iOS, Web).",
+          features: [
+            "Real-time messaging",
+            "Media sharing",
+            "Push notifications",
+          ],
+          // technologies: ["Flutter", "Dart", "Firebase"],
+          // libraries: {
+          //   'cloud_firestore': 'https://pub.dev/packages/cloud_firestore',
+          //   'firebase_auth': 'https://pub.dev/packages/firebase_auth',
+          // },
+          // isWebProject: false,
+        ),
+        ProjectExperience(
+          name: "Quicshop",
+          appOrWebLink:
+              "https://play.google.com/store/apps/details?id=com.quicshop.consumer&pcampaignid=web_share",
+          screenshots: [
+            "https://raw.githubusercontent.com/Vivekkurre1/do_chat/refs/heads/main/screenshots/Screenshot%202025-10-01%20at%2012.04.40%E2%80%AFPM.png",
+            "https://raw.githubusercontent.com/Vivekkurre1/do_chat/refs/heads/main/screenshots/Screenshot%202025-10-01%20at%2012.01.19%E2%80%AFPM.png",
+          ],
+          summary: "Developed shopping UI and integrated Stripe payments.",
+          features: ["Product catalog", "Cart & checkout", "Order tracking"],
+          // technologies: ["Flutter", "Dart", "Stripe API"],
+          // libraries: {
+          //   'provider': 'https://pub.dev/packages/provider',
+          //   'http': 'https://pub.dev/packages/http',
+          //   'stripe_payment': 'https://pub.dev/packages/stripe_payment',
+          // },
+          // isWebProject: false,
+        ),
+      ],
     ),
-    Project(
-      name: 'Chat Application',
-      logoUrl: 'https://img.icons8.com/color/48/000000/chat.png',
-      description:
-          'Real-time chat app with group chat and media sharing features.',
-      features: ['Real-time messaging', 'Group chat', 'Media sharing'],
-      technologies: ['Flutter', 'Dart', 'Firebase Firestore'],
-      libraries: {
-        'cloud_firestore': 'https://pub.dev/packages/cloud_firestore',
-        'firebase_auth': 'https://pub.dev/packages/firebase_auth',
+    Experience(
+      companyName: 'Multi CRM',
+      designation: 'Flutter Engineer',
+      startDate: DateTime(2025, 4),
+      endDate: DateTime(2022, 7),
+      employmentType: EmploymentType.partTime,
+      companyLogoUrl:
+          "https://res.cloudinary.com/dnjeaojih/image/upload/v1759483802/multicrm_dcu7k6.webp",
+      companyWebsite: "https://codeaffairs.io",
+      socialLinks: {
+        "LinkedIn": "https://linkedin.com/company/codeaffairs",
+        "GitHub": "https://github.com/codeaffairs",
       },
-      screenshots: [
-        "https://res.cloudinary.com/dnjeaojih/image/upload/v1744282840/images/users/profile_o8tAJghauAQdQtCat8buDixYlnw1.jpg",
-        "https://res.cloudinary.com/dnjeaojih/image/upload/v1744282840/images/users/profile_o8tAJghauAQdQtCat8buDixYlnw1.jpg",
+      techStack: ["Flutter", "Dart", "REST API", "Git", "GitHub"],
+      projects: [
+        ProjectExperience(
+          name: "Multi CRM - Bulk Sender",
+          appOrWebLink:
+              "https://play.google.com/store/apps/details?id=com.app.multicrm&pcampaignid=web_share",
+          screenshots: [
+            "https://raw.githubusercontent.com/Vivekkurre1/do_chat/refs/heads/main/screenshots/Screenshot%202025-10-01%20at%2012.04.40%E2%80%AFPM.png",
+            "https://raw.githubusercontent.com/Vivekkurre1/do_chat/refs/heads/main/screenshots/Screenshot%202025-10-01%20at%2012.01.19%E2%80%AFPM.png",
+          ],
+          summary:
+              "Built a chat application for cross-platform (Android, iOS, Web).",
+          features: ["Topic subscriptions", "Offline reading"],
+          // technologies: ["Flutter", "Dart", "GraphQL"],
+          // libraries: {
+          //   'graphql_flutter': 'https://pub.dev/packages/graphql_flutter',
+          // },
+          // isWebProject: false,
+        ),
       ],
-      liveDemoUrl: 'https://chatapp.example.com',
-      githubUrl: 'https://github.com/yourusername/chat-app',
-      isWebProject: true,
     ),
   ];
 }
