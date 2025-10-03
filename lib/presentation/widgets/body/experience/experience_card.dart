@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:vivek_portfolio/core/utils/theme_cubit.dart';
 import 'package:vivek_portfolio/core/widgets/screenshots.dart';
 import 'package:vivek_portfolio/data/models/experience.dart';
 import 'package:vivek_portfolio/presentation/widgets/body/projects/widgets/custom_chips.dart';
@@ -18,12 +20,12 @@ class ExperienceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
-    final primary = theme.colorScheme.primary;
+    final themeData = context.watch<ThemeCubit>().state.themeData;
+    final isDark = themeData.brightness == Brightness.dark;
+    final primary = themeData.colorScheme.primary;
 
     return Card(
-      color: theme.cardColor,
+      color: themeData.cardColor,
       elevation: isDark ? 2 : 6,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: Padding(
@@ -51,7 +53,7 @@ class ExperienceCard extends StatelessWidget {
                     children: [
                       Text(
                         exp.companyName,
-                        style: theme.textTheme.bodyLarge?.copyWith(
+                        style: themeData.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -66,7 +68,7 @@ class ExperienceCard extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: isDark
                                   ? primary.withOpacity(0.21)
-                                  : primary.withOpacity(0.10),
+                                  : primary.withOpacity(0.21),
                               borderRadius: BorderRadius.circular(5),
                             ),
                             child: Text(
@@ -78,7 +80,7 @@ class ExperienceCard extends StatelessWidget {
                                   : 'REMOTE / CONTRACT',
                               style: TextStyle(
                                 color: isDark
-                                    ? Colors.yellow[100]
+                                    ? Colors.blue[900]
                                     : Colors.blue[900],
                                 fontWeight: FontWeight.w500,
                                 fontSize: 12,
@@ -87,7 +89,9 @@ class ExperienceCard extends StatelessWidget {
                           ),
                           Text(
                             exp.designation,
-                            style: theme.textTheme.bodyMedium,
+                            style: themeData.textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ],
                       ),
@@ -110,15 +114,27 @@ class ExperienceCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text("Duration: ", style: theme.textTheme.titleSmall),
+                Text(
+                  "Duration: ",
+                  style: themeData.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
                 Text(
                   formatDuration(exp.startDate, exp.endDate),
-                  style: theme.textTheme.titleSmall,
+                  style: themeData.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ],
             ),
             const SizedBox(height: 8),
-            Text("Tech Stack:", style: theme.textTheme.titleSmall),
+            Text(
+              "Tech Stack:",
+              style: themeData.textTheme.titleSmall?.copyWith(
+                fontWeight: FontWeight.w600,
+              ),
+            ),
             const SizedBox(height: 4),
             CustomChips(items: exp.techStack),
             // Social links
@@ -151,7 +167,7 @@ class ExperienceCard extends StatelessWidget {
                       children: [
                         Text(
                           proj.name,
-                          style: theme.textTheme.titleSmall?.copyWith(
+                          style: themeData.textTheme.titleSmall?.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -170,31 +186,16 @@ class ExperienceCard extends StatelessWidget {
                     if (proj.summary.isNotEmpty)
                       Text(
                         proj.summary,
-                        style: theme.textTheme.bodySmall?.copyWith(height: 1.2),
+                        style: themeData.textTheme.bodySmall?.copyWith(
+                          height: 1.2,
+                        ),
                       ),
                     const SizedBox(height: 8),
                     if (proj.features.isNotEmpty)
-                      Text('Features:', style: theme.textTheme.titleSmall),
+                      Text('Features:', style: themeData.textTheme.titleSmall),
                     const SizedBox(height: 4),
                     if (proj.features.isNotEmpty)
                       CustomChips(items: proj.features),
-                    // Wrap(
-                    //   spacing: 6,
-                    //   runSpacing: 4,
-                    //   children: proj.features
-                    //       .map(
-                    //         (f) => Chip(
-                    //           label: Text(
-                    //             f,
-                    //             style: theme.textTheme.labelSmall,
-                    //           ),
-                    //           backgroundColor: isDark
-                    //               ? Colors.blueGrey[800]
-                    //               : Colors.blueGrey[50],
-                    //         ),
-                    //       )
-                    //       .toList(),
-                    // ),
                     const SizedBox(height: 8),
                     if (proj.screenshots.isNotEmpty)
                       Screenshots(
