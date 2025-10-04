@@ -294,8 +294,18 @@ abstract class AppConstants {
             "https://raw.githubusercontent.com/Vivekkurre1/do_chat/refs/heads/main/screenshots/Screenshot%202025-10-01%20at%2012.01.19%E2%80%AFPM.png",
           ],
           summary:
-              "Built a chat application for cross-platform (Android, iOS, Web).",
-          features: ["Topic subscriptions", "Offline reading"],
+              "Developed WhatsApp automation and bulk messaging features for streamlined business communication.",
+          features: [
+            // One-line bug/fix/issue summary as first feature
+            "Resolved all major bugs and reliability issues in automation, campaign, call logs, and device management for strong platform stability.",
+
+            // Headline + features block
+            "Automation Flows: Welcome, Subscribe, and Unsubscribe message automation for WhatsApp users",
+            "Contact Import: Excel/CSV upload, WhatsApp Groups/Chats sync, phonebook/manual entry",
+            "Chatbot Flow Builder: Visual, drag-and-drop automation logic & unified inbox with tagging and threaded replies",
+            "Digital Store Integration: In-app store, product listing, order & payment (via WhatsApp) automation",
+            "Reports/Reminders: Migrated legacy 'Report' to Reminders, Google Play Referral API integration, and automated follow-ups",
+          ],
           // technologies: ["Flutter", "Dart", "GraphQL"],
           // libraries: {
           //   'graphql_flutter': 'https://pub.dev/packages/graphql_flutter',

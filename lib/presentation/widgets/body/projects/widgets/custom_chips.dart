@@ -24,6 +24,9 @@ class CustomChips extends StatelessWidget {
             child: Chip(
               label: Text(
                 item,
+                softWrap: true,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   color: Colors.blue.shade700,
                   decoration: TextDecoration.underline,
@@ -33,7 +36,15 @@ class CustomChips extends StatelessWidget {
             ),
           );
         }
-        return Chip(label: Text(item), backgroundColor: Colors.grey.shade200);
+        return Chip(
+          label: Text(
+            item,
+            softWrap: true,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+          backgroundColor: Colors.grey.shade200,
+        );
       }).toList(),
     );
   }
