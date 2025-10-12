@@ -1,7 +1,6 @@
 enum AppBarHeaders {
   home,
   aboutMe,
-  education,
   experience,
   projects,
   achievements,

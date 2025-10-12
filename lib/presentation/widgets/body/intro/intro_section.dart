@@ -11,7 +11,6 @@ class IntroSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: context.height * .12),
-      // padding: EdgeInsets.only(bottom: 100),
       child: context.width < DeviceType.mobile.getMaxWidth()
           ? const Column(
               crossAxisAlignment: CrossAxisAlignment.center,

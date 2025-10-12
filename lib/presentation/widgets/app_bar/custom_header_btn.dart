@@ -26,13 +26,13 @@ class CustomHeaderBtn extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 20),
+        padding: EdgeInsets.zero,
         child: Text(AppBarHeaders.values[headerIndex].getString()),
       ),
     );
   }
 
-  Color _getHeaderColor({required currentIndex, required int headerIndex}) {
+  Color _getHeaderColor({required int currentIndex, required int headerIndex}) {
     if (currentIndex == headerIndex) {
       return AppColors.primaryColor;
     } else {

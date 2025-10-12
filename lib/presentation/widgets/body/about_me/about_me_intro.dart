@@ -24,7 +24,7 @@ class AboutMeIntro extends StatelessWidget {
         const SizedBox(height: 8),
         Text(
           AppStrings.aboutMeMsg,
-          style: context.width < DeviceType.mobile.getMaxWidth()
+          style: context.width < DeviceType.ipad.getMaxWidth()
               ? textTheme.titleSmall
               : textTheme.titleLarge,
           softWrap: true,

@@ -38,7 +38,6 @@ class _BasicServiceItemState extends State<BasicServiceItem> {
                 child: Text(
                   widget.service.service,
                   style: AppStyles.s24,
-                  // minFontSize: 8,
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -48,11 +47,11 @@ class _BasicServiceItemState extends State<BasicServiceItem> {
     );
   }
 
-  void _onExit(event) {
+  void _onExit(dynamic event) {
     setState(() => itemColor = AppColors.lowPriority);
   }
 
-  void _onEnter(event) {
+  void _onEnter(dynamic event) {
     setState(() => itemColor = AppColors.primaryColor);
   }
 }

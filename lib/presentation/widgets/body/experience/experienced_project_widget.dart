@@ -13,7 +13,6 @@ class ExperiencedProject extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeData = context.watch<ThemeCubit>().state.themeData;
-    // final isDark = themeData.brightness == Brightness.dark;
     final primary = themeData.colorScheme.primary;
     return Padding(
       padding: const EdgeInsets.only(bottom: 22.0),

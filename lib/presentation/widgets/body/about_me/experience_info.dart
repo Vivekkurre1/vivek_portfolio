@@ -35,13 +35,10 @@ class ExperienceInfo extends StatelessWidget {
 
   TextStyle? _getExpMsgStyle(double deviceWidth, TextTheme textTheme) {
     if (deviceWidth < DeviceType.mobile.getMaxWidth()) {
-      // return AppStyles.s16.copyWith(fontWeight: FontWeight.w500);
       return textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w500);
     } else if (deviceWidth < DeviceType.ipad.getMaxWidth()) {
-      // return AppStyles.s18;
       return textTheme.headlineMedium;
     } else {
-      // return AppStyles.s24.copyWith(fontWeight: FontWeight.w500);
       return textTheme.headlineLarge?.copyWith(fontWeight: FontWeight.w500);
     }
   }

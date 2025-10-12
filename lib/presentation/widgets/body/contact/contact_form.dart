@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vivek_portfolio/core/utils/theme_cubit.dart';
-
-import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_enums.dart';
 import '../../../../core/utils/app_extensions.dart';
 import '../../../common_widgets/custom_button.dart';
@@ -42,17 +40,11 @@ class _ContactFormState extends State<ContactForm> {
 
   @override
   Widget build(BuildContext context) {
-    var themeData = context.watch<ThemeCubit>().state.themeData;
     return Container(
       padding: const EdgeInsets.all(32),
       decoration: BoxDecoration(
-        color: themeData.cardColor,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(
-            context.width > DeviceType.ipad.getMaxWidth() ? 0 : 16,
-          ),
-          bottomRight: Radius.circular(16),
-        ),
+        color: Color(0xff7562E0),
+        borderRadius: BorderRadius.only(bottomRight: Radius.circular(16)),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
@@ -62,80 +54,37 @@ class _ContactFormState extends State<ContactForm> {
         ],
       ),
       width: _getFormWidth(context.width),
-      // height: context.width * 0.35,
       height: _getFormHeight(context.width),
       child: Form(
         key: _formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: 12,
           children: [
-            TextFormField(
-              controller: _nameController,
-              style: themeData.textTheme.labelLarge,
-              decoration: InputDecoration(
-                labelText: 'Name',
-                labelStyle: _getExpMsgContentStyle(context.width, themeData),
-              ),
-            ),
-            const SizedBox(height: 12),
-            TextFormField(
-              controller: _emailController,
-              style: themeData.textTheme.labelLarge,
-              // style: _getExpMsgContentStyle(context.width, themeData),
-              decoration: InputDecoration(
-                labelText: 'E-mail',
-                labelStyle: _getExpMsgContentStyle(context.width, themeData),
-              ),
-            ),
-            const SizedBox(height: 12),
-            TextFormField(
+            CustomTextFormField(title: "Name", controller: _nameController),
+            CustomTextFormField(title: "E-mail", controller: _emailController),
+            CustomTextFormField(
+              title: "Subject",
               controller: _subjectController,
-              style: themeData.textTheme.labelLarge,
-              decoration: InputDecoration(
-                labelText: 'Subject',
-                labelStyle: _getExpMsgContentStyle(context.width, themeData),
-              ),
             ),
-            const SizedBox(height: 12),
-            TextField(
+            CustomTextFormField(
+              title: "Type a message here...",
               controller: _messageController,
               maxLines: 3,
-              style: themeData.textTheme.bodyLarge,
-              decoration: InputDecoration(
-                labelText: 'Type a message here...',
-                labelStyle: _getExpMsgContentStyle(context.width, themeData),
-              ),
             ),
-            const SizedBox(height: 16),
-            CustomButton(
+            CustomButton2(
+              Colors.black,
               label: 'Submit',
+              borderColor: Colors.black38,
+              backgroundColor: Colors.white,
               onPressed: () {},
-              backgroundColor: AppColors.primaryColor,
-              width: _getFormWidth(context.width) / 2,
+              width: 160,
             ),
           ],
         ),
       ),
     );
-  }
-
-  TextStyle? _getExpMsgContentStyle(double deviceWidth, ThemeData theme) {
-    if (deviceWidth < DeviceType.mobile.getMaxWidth()) {
-      return theme.textTheme.titleSmall?.copyWith(
-        fontWeight: FontWeight.w500,
-        // color: theme.hintColor,
-      );
-    } else if (deviceWidth < DeviceType.ipad.getMaxWidth()) {
-      return theme.textTheme.titleSmall?.copyWith(
-        fontWeight: FontWeight.w500,
-        // color: theme.hintColor,
-      );
-    } else {
-      return theme.textTheme.titleMedium?.copyWith(
-        fontWeight: FontWeight.w500,
-        // color: theme.hintColor,
-      );
-    }
   }
 
   double _getFormWidth(double deviceWidth) {
@@ -162,5 +111,66 @@ class _ContactFormState extends State<ContactForm> {
     } else {
       return deviceWidth / 2.5;
     }
+  }
+}
+
+class CustomTextFormField extends StatelessWidget {
+  const CustomTextFormField({
+    super.key,
+    required this.title,
+    required TextEditingController controller,
+    this.maxLines = 1,
+  }) : _nameController = controller;
+  final String title;
+  final TextEditingController _nameController;
+  final int maxLines;
+  @override
+  Widget build(BuildContext context) {
+    var theme = context.watch<ThemeCubit>().state.themeData;
+    TextStyle? getExpMsgContentStyle() {
+      if (context.width < DeviceType.mobile.getMaxWidth()) {
+        return theme.textTheme.titleSmall?.copyWith(
+          fontWeight: FontWeight.w500,
+          color: Colors.white,
+        );
+      } else if (context.width < DeviceType.ipad.getMaxWidth()) {
+        return theme.textTheme.titleSmall?.copyWith(
+          fontWeight: FontWeight.w500,
+          color: Colors.white,
+        );
+      } else {
+        return theme.textTheme.titleMedium?.copyWith(
+          fontWeight: FontWeight.w500,
+          color: Colors.white,
+        );
+      }
+    }
+
+    return TextFormField(
+      controller: _nameController,
+      style: getExpMsgContentStyle(),
+      maxLines: maxLines,
+      decoration: InputDecoration(
+        labelText: title,
+
+        labelStyle: getExpMsgContentStyle(),
+        enabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.white,
+          ), // Default (unfocused) underline
+        ),
+        focusedBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.white,
+            width: 2.0,
+          ), // Focused underline
+        ),
+        disabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.white54,
+          ), // Optional (disabled state)
+        ),
+      ),
+    );
   }
 }

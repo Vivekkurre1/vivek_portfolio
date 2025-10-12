@@ -17,7 +17,6 @@ class IntroImage extends StatelessWidget {
     );
 
     return Positioned(
-      // alignment: Alignment.topRight,
       top: 0,
       right: 8,
       bottom: 0,

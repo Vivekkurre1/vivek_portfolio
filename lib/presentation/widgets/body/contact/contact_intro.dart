@@ -17,12 +17,7 @@ class ContactIntro extends StatelessWidget {
       padding: const EdgeInsets.all(32),
       decoration: BoxDecoration(
         color: context.watch<ThemeCubit>().state.themeData.cardColor,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(16),
-          bottomRight: Radius.circular(
-            context.width > DeviceType.ipad.getMaxWidth() ? 0 : 16,
-          ),
-        ),
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(16)),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
@@ -32,10 +27,7 @@ class ContactIntro extends StatelessWidget {
         ],
       ),
       width: _getFormWidth(context.width),
-      // height: context.width * 0.35,
       height: _getFormHeight(context.width),
-
-      // alignment: Alignment.center,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,

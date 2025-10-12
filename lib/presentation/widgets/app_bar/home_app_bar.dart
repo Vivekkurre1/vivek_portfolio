@@ -19,10 +19,6 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // color: Theme.of(context).brightness == Brightness.dark
-      //     ? AppColors.appBarColor
-      //     : AppColors.appBarColorLight,
-      // color: Theme.of(context).appBarTheme.backgroundColor,
       color: context
           .watch<ThemeCubit>()
           .state
@@ -71,9 +67,9 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   double _getHorizontalPadding(BuildContext context) {
     if (context.width < DeviceType.ipad.getMaxWidth()) {
-      return context.width * .03;
+      return context.width * .02;
     } else {
-      return context.width * .03;
+      return context.width * .02;
     }
   }
 }

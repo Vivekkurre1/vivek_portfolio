@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vivek_portfolio/core/utils/app_constants.dart';
 import 'package:vivek_portfolio/core/utils/app_enums.dart';
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:js' as js;
 
 import 'package:vivek_portfolio/core/utils/app_extensions.dart';
@@ -114,7 +115,6 @@ class AchievementCard extends StatelessWidget {
         color: Colors.white.withOpacity(0.5),
         boxShadow: [
           BoxShadow(
-            // color: Colors.black.withOpacity(0.1),
             color: theme.hintColor.withOpacity(0.1),
             blurRadius: 10.0,
             spreadRadius: 5,
