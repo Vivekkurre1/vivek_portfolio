@@ -65,14 +65,15 @@ class _HomeBodyState extends State<HomeBody> {
               aboutHeight +
               educationHeight +
               experienceHeight +
-              achievementHeight)) {
+              projectHeight)) {
         context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(4));
       } else if (controllerHeight <
           (introHeight +
               aboutHeight +
               educationHeight +
-              achievementHeight +
-              projectHeight)) {
+              experienceHeight +
+              projectHeight +
+              achievementHeight)) {
         context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(5));
       } else {
         context.read<HomeBloc>().add(ChangeAppBarHeadersColorByColor(6));
@@ -119,13 +120,13 @@ class _HomeBodyState extends State<HomeBody> {
           }
           if (state.index == 4) {
             Scrollable.ensureVisible(
-              achievementKey.currentContext!,
+              projectKey.currentContext!,
               duration: duration,
             );
           }
           if (state.index == 5) {
             Scrollable.ensureVisible(
-              projectKey.currentContext!,
+              achievementKey.currentContext!,
               duration: duration,
             );
           }
@@ -149,8 +150,8 @@ class _HomeBodyState extends State<HomeBody> {
                   AboutMeSection(key: aboutKey),
                   EducationSection(key: educationKey),
                   ExperienceSection(key: experienceKey),
-                  AchievementSection(key: achievementKey),
                   ProjectsSection(key: projectKey),
+                  AchievementSection(key: achievementKey),
                   ContactSection(key: contactKey),
                 ],
               ),

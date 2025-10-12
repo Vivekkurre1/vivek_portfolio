@@ -3,8 +3,8 @@ enum AppBarHeaders {
   aboutMe,
   education,
   experience,
-  achievements,
   projects,
+  achievements,
   contact,
 }
 

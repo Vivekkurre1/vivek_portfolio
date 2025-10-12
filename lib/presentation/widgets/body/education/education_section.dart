@@ -8,20 +8,10 @@ class EducationSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 80),
+      padding: EdgeInsets.only(bottom: 100),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          EducationHead(),
-          SizedBox(height: 20),
-          EduDesk(),
-          // if (context.width < DeviceType.mobile.getMaxWidth())
-          //   EduMob()
-          // else if (context.width < DeviceType.ipad.getMaxWidth())
-          //   EduTab()
-          // else
-          //   EduDesk(),
-        ],
+        children: [EducationHead(), SizedBox(height: 20), EduDesk()],
       ),
     );
   }

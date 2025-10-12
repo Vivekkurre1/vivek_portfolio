@@ -13,10 +13,10 @@ extension AppBarHeaderExtension on AppBarHeaders {
         return 'Education';
       case AppBarHeaders.experience:
         return 'Experience';
-      case AppBarHeaders.achievements:
-        return 'Achievements';
       case AppBarHeaders.projects:
         return 'Projects';
+      case AppBarHeaders.achievements:
+        return 'Achievements';
       case AppBarHeaders.contact:
         return 'Contact';
     }
