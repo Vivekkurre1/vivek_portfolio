@@ -3,9 +3,10 @@ import 'package:vivek_portfolio/data/models/project.dart';
 import 'package:vivek_portfolio/presentation/widgets/body/projects/helpers/helper.dart';
 
 class CardHead extends StatelessWidget {
-  const CardHead({super.key, required this.project});
+  const CardHead({super.key, required this.themeData, required this.project});
 
   final Project project;
+  final ThemeData themeData;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,6 @@ class CardHead extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           child: Image.network(
             project.logoUrl,
-            // "https://via.placeholder.com/150",
             width: 48,
             height: 48,
             fit: BoxFit.contain,
@@ -27,17 +27,15 @@ class CardHead extends StatelessWidget {
         Expanded(
           child: Text(
             project.name,
-            // "Project Name",
-            // style: theme.textTheme.headline6?.copyWith(
-            //   fontWeight: FontWeight.bold,
-            // ),
+            style: themeData.textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         IconButton(
-          icon: const Icon(Icons.code),
+          icon: Icon(Icons.code, color: themeData.colorScheme.primary),
           tooltip: 'View GitHub',
           onPressed: () => customeUrlLauncher(project.githubUrl),
-          // onPressed: null,
         ),
       ],
     );

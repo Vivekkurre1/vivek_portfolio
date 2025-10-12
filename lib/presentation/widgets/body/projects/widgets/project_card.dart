@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vivek_portfolio/core/utils/theme_cubit.dart';
 import 'package:vivek_portfolio/data/models/project.dart';
 import 'package:vivek_portfolio/presentation/widgets/body/projects/widgets/custom_chips.dart';
 import 'package:vivek_portfolio/presentation/widgets/body/projects/helpers/helper.dart';
 import 'package:vivek_portfolio/presentation/widgets/body/projects/widgets/project_card_head.dart';
-import 'package:vivek_portfolio/core/widgets/screenshots.dart';
+import 'package:vivek_portfolio/presentation/common_widgets/screenshots.dart';
 
 class ProjectCard extends StatelessWidget {
   final Project project;
@@ -12,10 +14,10 @@ class ProjectCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final themeData = context.watch<ThemeCubit>().state.themeData;
     return Container(
       decoration: BoxDecoration(
-        color: theme.cardColor,
+        color: themeData.cardColor,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
@@ -30,58 +32,44 @@ class ProjectCard extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min, // Responsive height!
           crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: 12,
           children: [
             // Logo and Project Name Row
-            CardHead(project: project),
-            const SizedBox(height: 12),
+            CardHead(project: project, themeData: themeData),
             // Description
             Text(
               project.description,
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
-              // style: theme.textTheme.bodyText2,
+              style: themeData.textTheme.bodySmall?.copyWith(height: 1.2),
             ),
-            const SizedBox(height: 12),
-
             // Features
-            Text(
-              'Features:',
-              // style: theme.textTheme.subtitle1?.copyWith(
-              //   fontWeight: FontWeight.w600,
-              // ),
-            ),
-            ...project.features.map((f) => Text('• $f')),
-            const SizedBox(height: 12),
-
-            // Technologies
-            Text(
-              'Technologies:',
-              // style: theme.textTheme.subtitle1?.copyWith(
-              //   fontWeight: FontWeight.w600,
-              // ),
-            ),
-            CustomChips(items: project.technologies),
-            const SizedBox(height: 8),
-
-            // Libraries with hyperlinks
-            Text(
-              'Libraries:',
-              // style: theme.textTheme.subtitle1?.copyWith(
-              //   fontWeight: FontWeight.w600,
-              // ),
+            Text('Features:', style: themeData.textTheme.titleSmall),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: project.features
+                  .map(
+                    (f) => Text('• $f', style: themeData.textTheme.bodySmall),
+                  )
+                  .toList(),
             ),
             CustomChips(
+              title: "Technologies:",
+              themeData: themeData,
+              items: project.technologies,
+            ),
+            CustomChips(
+              title: "Libraries:",
+              themeData: themeData,
               items: project.libraries.keys.toList(),
               isClickable: true,
               links: project.libraries,
             ),
-            const SizedBox(height: 12),
             Screenshots(
+              themeData: themeData,
               screenshots: project.screenshots,
               isWebProject: project.isWebProject,
             ),
-            SizedBox(height: 20),
-
             // Buttons Row
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

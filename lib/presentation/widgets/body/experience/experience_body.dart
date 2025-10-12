@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vivek_portfolio/core/utils/app_constants.dart';
-import 'package:vivek_portfolio/presentation/widgets/body/experience/experience_card.dart';
+import 'package:vivek_portfolio/presentation/widgets/body/experience/card/experience_card.dart';
 
 class ExperienceUi extends StatelessWidget {
   const ExperienceUi({super.key});

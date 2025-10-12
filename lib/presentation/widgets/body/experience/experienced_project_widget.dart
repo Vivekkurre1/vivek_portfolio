@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vivek_portfolio/core/utils/theme_cubit.dart';
-import 'package:vivek_portfolio/core/widgets/screenshots.dart';
+import 'package:vivek_portfolio/presentation/common_widgets/screenshots.dart';
 import 'package:vivek_portfolio/data/models/experience.dart';
 import 'package:vivek_portfolio/presentation/widgets/body/projects/widgets/custom_chips.dart';
 
@@ -35,33 +35,39 @@ class ExperiencedProject extends StatelessWidget {
                 ),
             ],
           ),
-          if (proj.summary.isNotEmpty)
-            Text(
-              proj.summary,
-              style: themeData.textTheme.bodySmall?.copyWith(height: 1.2),
-            ),
+          if (proj.summary.isNotEmpty) _summary(themeData),
           const SizedBox(height: 8),
           if (proj.features.isNotEmpty)
-            Text('Features:', style: themeData.textTheme.titleSmall),
-          const SizedBox(height: 4),
-          if (proj.features.isNotEmpty) CustomChips(items: proj.features),
+            CustomChips(
+              title: "Features:",
+              themeData: themeData,
+              items: proj.features,
+            ),
           const SizedBox(height: 8),
           if (proj.libraries != null)
-            Text('Libraries:', style: themeData.textTheme.titleSmall),
-          const SizedBox(height: 4),
-          if (proj.libraries != null)
             CustomChips(
+              title: 'Libraries:',
+              themeData: themeData,
               isClickable: true,
               items: proj.libraries!.keys.toList(),
               links: proj.libraries,
             ),
           const SizedBox(height: 8),
-          Text('Screenshots:', style: themeData.textTheme.titleSmall),
-          const SizedBox(height: 8),
           if (proj.screenshots.isNotEmpty)
-            Screenshots(screenshots: proj.screenshots, isWebProject: false),
+            Screenshots(
+              themeData: themeData,
+              screenshots: proj.screenshots,
+              isWebProject: false,
+            ),
         ],
       ),
+    );
+  }
+
+  Text _summary(ThemeData themeData) {
+    return Text(
+      proj.summary,
+      style: themeData.textTheme.bodySmall?.copyWith(height: 1.2),
     );
   }
 }

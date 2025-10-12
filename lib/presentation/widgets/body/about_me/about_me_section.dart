@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vivek_portfolio/core/utils/theme_cubit.dart';
 import '../../../../core/utils/app_extensions.dart';
-import '../../../../core/widgets/custom_divider.dart';
+import '../../../common_widgets/custom_divider.dart';
 import 'about_me_intro.dart';
 import 'basic_services_grid.dart';
 // import 'detailed_services_section.dart';

@@ -158,48 +158,6 @@ abstract class AppConstants {
       githubUrl: 'https://github.com/Vivekkurre1/snake_game',
       isWebProject: false,
     ),
-    // Project(
-    //   name: 'E-Commerce App',
-    //   logoUrl: 'https://img.icons8.com/ios-filled/50/000000/shopping-cart.png',
-    //   description:
-    //       'A complete e-commerce app with product browsing, cart and payment integration.',
-    //   features: [
-    //     'Product search',
-    //     'Shopping cart',
-    //     'Payment Gateway Integration',
-    //   ],
-    //   technologies: ['Flutter', 'Dart', 'Stripe'],
-    //   libraries: {
-    //     'flutter_stripe': 'https://pub.dev/packages/flutter_stripe',
-    //     'cached_network_image': 'https://pub.dev/packages/cached_network_image',
-    //   },
-    //   screenshots: [
-    //     "https://raw.githubusercontent.com/Vivekkurre1/meeting_sync/2ff6be88503439225716fba9f1720c1a2e9a628e/screen_images/Screenshot%202025-08-20%20at%201.06.48%E2%80%AFPM.png",
-    //     'https://raw.githubusercontent.com/Vivekkurre1/meeting_sync/2ff6be88503439225716fba9f1720c1a2e9a628e/screen_images/Screenshot%202025-08-20%20at%201.05.00%E2%80%AFPM.png',
-    //   ],
-    //   liveDemoUrl: 'https://ecommerceapp.com',
-    //   githubUrl: 'https://github.com/yourusername/ecommerce-app',
-    //   isWebProject: false,
-    // ),
-    // Project(
-    //   name: 'Chat Application',
-    //   logoUrl: 'https://img.icons8.com/color/48/000000/chat.png',
-    //   description:
-    //       'Real-time chat app with group chat and media sharing features.',
-    //   features: ['Real-time messaging', 'Group chat', 'Media sharing'],
-    //   technologies: ['Flutter', 'Dart', 'Firebase Firestore'],
-    //   libraries: {
-    //     'cloud_firestore': 'https://pub.dev/packages/cloud_firestore',
-    //     'firebase_auth': 'https://pub.dev/packages/firebase_auth',
-    //   },
-    //   screenshots: [
-    //     "https://res.cloudinary.com/dnjeaojih/image/upload/v1744282840/images/users/profile_o8tAJghauAQdQtCat8buDixYlnw1.jpg",
-    //     "https://res.cloudinary.com/dnjeaojih/image/upload/v1744282840/images/users/profile_o8tAJghauAQdQtCat8buDixYlnw1.jpg",
-    //   ],
-    //   liveDemoUrl: 'https://chatapp.example.com',
-    //   githubUrl: 'https://github.com/yourusername/chat-app',
-    //   isWebProject: true,
-    // ),
   ];
   static List<Experience> experiences = [
     Experience(
