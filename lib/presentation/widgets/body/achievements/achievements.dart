@@ -1,12 +1,8 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:vivek_portfolio/core/utils/app_constants.dart';
 import 'package:vivek_portfolio/core/utils/app_enums.dart';
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:js' as js;
-
 import 'package:vivek_portfolio/core/utils/app_extensions.dart';
 import 'package:vivek_portfolio/core/utils/theme_cubit.dart';
 import 'package:vivek_portfolio/data/models/achivement.dart';
@@ -146,7 +142,7 @@ class AchievementCard extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              js.context.callMethod("open", [achievement.certificationUrl]);
+              launchUrl(Uri.parse(achievement.certificationUrl));
             },
             child: Text(
               'View Certificate',
