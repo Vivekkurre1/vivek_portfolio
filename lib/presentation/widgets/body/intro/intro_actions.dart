@@ -33,7 +33,7 @@ class IntoActions extends StatelessWidget {
         icon: Icons.remove_red_eye,
         borderColor: AppColors.primaryColor,
         onPressed: () {
-          context.read<HomeBloc>().add(ChangeAppBarHeadersIndex(4));
+          context.read<HomeBloc>().add(ChangeAppBarHeadersIndex(3));
         },
         width: 160,
       ),
