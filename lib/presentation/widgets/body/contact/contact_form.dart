@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vivek_portfolio/core/utils/theme_cubit.dart';
+import 'package:vivek_portfolio/service/emailjs_service.dart';
 import '../../../../core/utils/app_enums.dart';
 import '../../../../core/utils/app_extensions.dart';
 import '../../../common_widgets/custom_button.dart';
@@ -57,28 +58,65 @@ class _ContactFormState extends State<ContactForm> {
       height: _getFormHeight(context.width),
       child: Form(
         key: _formKey,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           spacing: 12,
           children: [
-            CustomTextFormField(title: "Name", controller: _nameController),
-            CustomTextFormField(title: "E-mail", controller: _emailController),
+            CustomTextFormField(
+              title: "Name",
+              controller: _nameController,
+              validator: (value) => value == null || value.trim().isEmpty
+                  ? 'Name is required'
+                  : null,
+            ),
+            CustomTextFormField(
+              title: "E-mail",
+              controller: _emailController,
+              validator: (value) => value == null || value.trim().isEmpty
+                  ? 'Email is required'
+                  : !RegExp(
+                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-\/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+                    ).hasMatch(value.trim())
+                  ? 'Enter a valid email'
+                  : null,
+            ),
             CustomTextFormField(
               title: "Subject",
               controller: _subjectController,
+              validator: (value) => value == null || value.trim().isEmpty
+                  ? 'Subject is required'
+                  : null,
             ),
             CustomTextFormField(
               title: "Type a message here...",
               controller: _messageController,
               maxLines: 3,
+              validator: (value) => value == null || value.trim().isEmpty
+                  ? 'Message is required'
+                  : null,
             ),
             CustomButton2(
               Colors.black,
               label: 'Submit',
               borderColor: Colors.black38,
               backgroundColor: Colors.white,
-              onPressed: () {},
+              onPressed: () async {
+                if (_formKey.currentState!.validate()) {
+                  await sendEmail(
+                    name: _nameController.text.trim(),
+                    email: _emailController.text.trim(),
+                    subject: _subjectController.text.trim(),
+                    message: _messageController.text.trim(),
+                  );
+                  _formKey.currentState!.reset();
+                  _nameController.clear();
+                  _emailController.clear();
+                  _subjectController.clear();
+                  _messageController.clear();
+                }
+              },
               width: 160,
             ),
           ],
@@ -120,10 +158,12 @@ class CustomTextFormField extends StatelessWidget {
     required this.title,
     required TextEditingController controller,
     this.maxLines = 1,
+    required this.validator,
   }) : _nameController = controller;
   final String title;
   final TextEditingController _nameController;
   final int maxLines;
+  final String? Function(String?) validator;
   @override
   Widget build(BuildContext context) {
     var theme = context.watch<ThemeCubit>().state.themeData;
@@ -150,9 +190,9 @@ class CustomTextFormField extends StatelessWidget {
       controller: _nameController,
       style: getExpMsgContentStyle(),
       maxLines: maxLines,
+      validator: validator,
       decoration: InputDecoration(
         labelText: title,
-
         labelStyle: getExpMsgContentStyle(),
         enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
