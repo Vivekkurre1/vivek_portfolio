@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:vivek_portfolio/core/utils/theme_cubit.dart';
 import 'package:vivek_portfolio/data/models/project.dart';
 import 'package:vivek_portfolio/presentation/widgets/body/projects/widgets/custom_chips.dart';
-import 'package:vivek_portfolio/presentation/widgets/body/projects/helpers/helper.dart';
 import 'package:vivek_portfolio/presentation/widgets/body/projects/widgets/project_card_head.dart';
 import 'package:vivek_portfolio/presentation/common_widgets/screenshots.dart';
 
@@ -76,14 +76,14 @@ class ProjectCard extends StatelessWidget {
               children: [
                 if (project.liveDemoUrl != null)
                   ElevatedButton(
-                    onPressed: () => customeUrlLauncher(project.liveDemoUrl!),
+                    onPressed: () => launchUrl(Uri.parse(project.liveDemoUrl!)),
                     child: const Text('Live Demo'),
                   ),
                 const SizedBox(width: 16),
                 ElevatedButton.icon(
                   icon: const Icon(Icons.code),
                   label: const Text('GitHub'),
-                  onPressed: () => customeUrlLauncher(project.githubUrl),
+                  onPressed: () => launchUrl(Uri.parse(project.githubUrl)),
                 ),
               ],
             ),

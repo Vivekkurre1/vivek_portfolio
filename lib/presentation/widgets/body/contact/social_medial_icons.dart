@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:vivek_portfolio/presentation/widgets/body/projects/helpers/helper.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/social_links.dart';
 
@@ -51,7 +50,7 @@ class SocialMediaIconBtn extends StatelessWidget {
         padding: const EdgeInsets.all(15),
       ),
       onPressed: () {
-        customeUrlLauncher(link!);
+        launchUrl(Uri.parse(link!));
       },
       child: Icon(icon, color: AppColors.primaryColor, size: 32),
     );

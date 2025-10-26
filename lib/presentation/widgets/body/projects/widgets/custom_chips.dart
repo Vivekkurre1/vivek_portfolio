@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vivek_portfolio/presentation/widgets/body/projects/helpers/helper.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CustomChips extends StatelessWidget {
   const CustomChips({
@@ -30,7 +30,7 @@ class CustomChips extends StatelessWidget {
           children: items.map((item) {
             if (isClickable && links != null && links!.containsKey(item)) {
               return InkWell(
-                onTap: () => customeUrlLauncher(links![item]!),
+                onTap: () => launchUrl(Uri.parse(links![item]!)),
                 child: Chip(
                   label: Text(
                     item,

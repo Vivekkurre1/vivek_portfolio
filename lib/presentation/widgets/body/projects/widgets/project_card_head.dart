@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:vivek_portfolio/data/models/project.dart';
-import 'package:vivek_portfolio/presentation/widgets/body/projects/helpers/helper.dart';
 
 class CardHead extends StatelessWidget {
   const CardHead({super.key, required this.themeData, required this.project});
@@ -35,7 +35,7 @@ class CardHead extends StatelessWidget {
         IconButton(
           icon: Icon(Icons.code, color: themeData.colorScheme.primary),
           tooltip: 'View GitHub',
-          onPressed: () => customeUrlLauncher(project.githubUrl),
+          onPressed: () => launchUrl(Uri.parse(project.githubUrl)),
         ),
       ],
     );
